@@ -2,16 +2,18 @@
 
 using namespace std;
 
-DisperseMatrix::DisperseMatrix()
-{
+
+ DisperseMatrix::DisperseMatrix() {
     vector<int> valores;
     vector<int> filas;
     vector<int> columnas;
-};
-void MatrizDispersa() {}
+    int m = 0 , n = 0;
+ }
 
-void DisperseMatrix::MatrizDispersa(int **&matriz, int fil, int col) // Arreglo de 2 dimensiones
-{
+ DisperseMatrix::DisperseMatrix(int **&matriz, int fil, int col) // Arreglo de 2 dimensiones
+{   vector<int> valores;
+    vector<int> filas;
+    vector<int> columnas;
     for (int i = 0; i < fil; i++)
     {
         for (int j = 0; j < col; j++)
@@ -49,15 +51,20 @@ void DisperseMatrix::MatrizDispersa(int **&matriz, int fil, int col) // Arreglo 
 
 }
 
-void DisperseMatrix::MatrizDispersa(vector<vector<int>> &matriz)
+DisperseMatrix::DisperseMatrix(const vector<vector<int>> &matriz , int m , int n) // constructor funcional 
 { // vector de vectores
+    vector<int> valores;
+    vector<int> filas;
+    vector<int> columnas;
+    int nfilas = m ;
+    int nColumnas = n ; 
     int fila, columna;
     for (fila = 0; fila < matriz.size(); fila++)
     {
         for (columna = 0; columna < matriz[fila].size(); columna++)
         {
             if (matriz[fila][columna] != 0)
-            {
+            { 
                 valores.push_back(matriz[fila][columna]);
                 filas.push_back(fila);
                 columnas.push_back(columna);

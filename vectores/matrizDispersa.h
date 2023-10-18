@@ -27,17 +27,17 @@ private:
     vector<int> valores;
     vector<int> filas;
     vector<int> columnas;
-
+    int nFilas , nColumnas ;
 public:
     /************************
      * OPERACIONES DEL TAD *
      ************************/
 
     /* Constructoras */
-    void MatrizDispersa();
-    void MatrizDispersa(int **&matriz, int m, int n); // Arreglo de 2 dimensiones
-    void MatrizDispersa(vector<vector<int>> &matriz); // Vector de Vectores
-    void MatrizDispersa(DisperseMatrix &matriz);      // Punto 3
+     DisperseMatrix();
+     DisperseMatrix(int **&matriz, int m, int n); // Arreglo de 2 dimensiones
+     DisperseMatrix( const vector<vector<int>> &matriz , int m , int n); // Vector de Vectores 
+     DisperseMatrix(DisperseMatrix &matriz);      // Punto 3
 
     /* Modificadoras */
     void rebuild(DisperseMatrix &matriz); // Reconstruir la matriz dispersa a normal con ceros
