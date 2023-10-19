@@ -12,6 +12,6 @@ int main()
     {
         cout << vec[i] << " ";
     }
-    
+
     return 0;
 }

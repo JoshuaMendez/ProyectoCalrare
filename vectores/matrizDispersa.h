@@ -1,7 +1,7 @@
 /*
  * Autores: Sebastian Izquierdo S. y Joshua Mendez
  * Fecha de creación: 12 de Octubre
- * Fecha última modificación: 12 de Octubre
+ * Fecha última modificación: 19 de Octubre
  * Versión: 1.0
  *
  * Archivo encabezado libreria TAD matriz Dispersa
@@ -11,7 +11,7 @@
 #define __MATRIZDISPERSA_H
 
 #include <iostream>
-#include "lista.h"
+#include <list>
 #include <vector>
 #include <string>
 
@@ -41,25 +41,25 @@ public:
     DisperseMatrix(DisperseMatrix &matriz);                          // Punto 3 --J
 
     /* Modificadoras */
-    vector<vector<int>> rebuild();      // Reconstruir la matriz dispersa a normal con ceros y la retonar --ready
-    void assign(int i, int j, int v);     // Modificar el valor en la posición i, j --J
-    void add(DisperseMatrix &matriz);     // Suma entre matrices --S
-    void productVector(vector<int> vec);  // Multiplica el objeto actual por el vector --J
+    vector<vector<int>> rebuild();       // Reconstruir la matriz dispersa a normal con ceros y la retonar --ready
+    void assign(int i, int j, int v);    // Modificar el valor en la posición i, j --J
+    void add(DisperseMatrix &matriz);    // Suma entre matrices --S
+    void productVector(vector<int> vec); // Multiplica el objeto actual por el vector --J
 
     /* Analizadoras */
-    int get(int i, int j);              // Obtener valor i, j --ready
-    Lista getRowLis(int fila);          // Retornar fila -- J
-    vector<int> getRowVec(int fila);    // Retornar fila --ready
-    Lista getColLis(int columna);       // Retornar columna --J
-    vector<int> getColVec(int columna); //  Retornar columna --ready
-    Lista getDisperseRowLis(int fila);                   // Retornar fila con ceros -- J
+    int get(int i, int j);                               // Obtener valor i, j --ready
+    list<int> getRowLis(int fila);                           // Retornar fila -- J
+    vector<int> getRowVec(int fila);                     // Retornar fila --ready
+    list<int> getColLis(int columna);                        // Retornar columna --J
+    vector<int> getColVec(int columna);                  //  Retornar columna --ready
+    list<int> getDisperseRowLis(int fila);                   // Retornar fila con ceros -- J
     vector<int> getDisperseRowVec(int fila);             // --S
-    Lista getDisperseColLis(int columna);                // Retornar columna con ceros --J
+    list<int> getDisperseColLis(int columna);                // Retornar columna con ceros --J
     vector<int> getDisperseColVec(int columna);          // --J
     void printMatrix(string sep);                        // Imprime la matriz con el separador --S
     int getMax();                                        // Retorna el mayor elemento de la matriz --J
     DisperseMatrix getTranspose();                       // Transpone la matriz --S
-    Lista addMatrixList(DisperseMatrix matriz);          // --J
+    list<int> addMatrixList(DisperseMatrix matriz);          // --J
     vector<int> addMatrixListVec(DisperseMatrix matriz); // --S
 
     /* Sobrecarga operadores */
