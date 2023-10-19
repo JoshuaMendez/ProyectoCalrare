@@ -36,21 +36,21 @@ public:
     /* Constructoras */
      DisperseMatrix();
      DisperseMatrix(int **&matriz, int m, int n); // Arreglo de 2 dimensiones
-     DisperseMatrix( const vector<vector<int>> &matriz , int m , int n); // Vector de Vectores 
+     DisperseMatrix( const vector<vector<int>> &matriz , int m , int n); // Vector de Vectores  --ready
      DisperseMatrix(DisperseMatrix &matriz);      // Punto 3 --J
 
     /* Modificadoras */
-    void rebuild(DisperseMatrix &matriz); // Reconstruir la matriz dispersa a normal con ceros --S
+    vector<vector<int>> rebuild(); // Reconstruir la matriz dispersa a normal con ceros y la retonar --ready
     void assign(int i, int j, int v);     // Modificar el valor en la posición i, j --J
     void add(DisperseMatrix &matriz);     // Suma entre matrices --S
     void productVector(vector<int> vec);  // Multiplica el objeto actual por el vector --J
 
     /* Analizadoras */
-    void get(int i, int j);            // Obtener valor i, j --S
+    int get(int i, int j);            // Obtener valor i, j --ready
     Lista getRowLis(int fila);            // Retornar fila -- J
-    vector<int> getRowVec(int fila);    //--S
+    vector<int> getRowVec(int fila);    //Retornar fila --ready
     Lista getColLis(int columna);         // Retornar columna --J
-    vector<int> getColVec(int columna); // --S
+    vector<int> getColVec(int columna); //  Retornar columna --ready
     Lista getDisperseRowLis(int fila);    // Retornar fila con ceros -- J
     vector<int> getDisperseRowVec(int fila); // --S
     Lista getDisperseColLis(int columna); // Retornar columna con ceros --J
