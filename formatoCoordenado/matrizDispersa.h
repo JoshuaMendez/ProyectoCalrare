@@ -50,7 +50,7 @@ public:
     int get(int i, int j);                               // Obtener valor i, j --ready
     list<int> getRowLis(int fila);                           // Retornar fila -- J
     vector<int> getRowVec(int fila);                     // Retornar fila --ready
-    list<int> getColLis(int columna);                        // Retornar columna --J
+    list<int> getColList(int columna);                        // Retornar columna --J
     vector<int> getColVec(int columna);                  //  Retornar columna --ready
     list<int> getDisperseRowLis(int fila);                   // Retornar fila con ceros -- J
     vector<int> getDisperseRowVec(int fila);             // --S
