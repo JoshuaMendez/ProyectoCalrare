@@ -3,15 +3,28 @@
 using namespace std;
 int main()
 {
-    vector<vector<int>> matriz = {{0, 3, 0, 0, 2},
-                                  {1, 0, 0, 5, 7}};
+    vector<vector<int>> matriz = {{-3, 1},
+                                    {2, 5},
+                                    {8, -7}};
 
-    DisperseMatrix matriz_1(matriz, 2, 5);
-    vector<int> vec = matriz_1.getColVec(1);
-    for (int i = 0; i < vec.size(); i++)
+    vector<vector<int>> matriz2 = {{7, -5},
+                                    {1, -2},
+                                    {1, -4}};
+
+    DisperseMatrix matriz_1(matriz, 3, 2);
+    DisperseMatrix matriz_2(matriz2, 3, 2);
+
+    DisperseMatrix calc;
+
+    calc = matriz_1 + matriz_2;
+
+    for (int i = 0; i < calc.valores.size(); i++)
     {
-        cout << vec[i] << " ";
+        if (i % 2 == 0)
+            cout << endl;
+        cout << calc.valores[i] << " ";
     }
+    cout << endl;
 
     return 0;
 }

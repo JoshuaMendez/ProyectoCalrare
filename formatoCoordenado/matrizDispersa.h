@@ -23,7 +23,7 @@ using namespace std;
 
 class DisperseMatrix
 {
-private:
+public:
     vector<int> valores;
     vector<int> filas;
     vector<int> columnas;

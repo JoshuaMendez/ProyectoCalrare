@@ -2,6 +2,8 @@
 
 using namespace std;
 
+/* Constructoras */
+
 DisperseMatrix::DisperseMatrix()
 {
     valores;
@@ -28,27 +30,27 @@ DisperseMatrix::DisperseMatrix(int **&matriz, int fil, int col) // Arreglo de 2 
         }
     }
 
-    // Debugging Zone
-    cout << "Valores" << endl;
-    for (int h = 0; h < valores.size(); h++)
-    {
-        cout << valores[h] << " ";
-    }
-    cout << endl;
+    // // Debugging Zone
+    // cout << "Valores" << endl;
+    // for (int h = 0; h < valores.size(); h++)
+    // {
+    //     cout << valores[h] << " ";
+    // }
+    // cout << endl;
 
-    cout << "Filas" << endl;
-    for (int h = 0; h < filas.size(); h++)
-    {
-        cout << filas[h] << " ";
-    }
-    cout << endl;
+    // cout << "Filas" << endl;
+    // for (int h = 0; h < filas.size(); h++)
+    // {
+    //     cout << filas[h] << " ";
+    // }
+    // cout << endl;
 
-    cout << "Columnas" << endl;
-    for (int h = 0; h < columnas.size(); h++)
-    {
-        cout << columnas[h] << " ";
-    }
-    cout << endl;
+    // cout << "Columnas" << endl;
+    // for (int h = 0; h < columnas.size(); h++)
+    // {
+    //     cout << columnas[h] << " ";
+    // }
+    // cout << endl;
 }
 
 DisperseMatrix::DisperseMatrix(const vector<vector<int>> &matriz, int m, int n) // constructor funcional
@@ -72,6 +74,18 @@ DisperseMatrix::DisperseMatrix(const vector<vector<int>> &matriz, int m, int n) 
         }
     }
 }
+
+DisperseMatrix::DisperseMatrix(DisperseMatrix &matriz)
+{
+    vector<int> valores = matriz.valores;
+    vector<int> filas = matriz.filas;
+    vector<int> columnas = matriz.columnas;
+}
+
+/* -- Constructoras -- */
+
+/* Modificadoras */
+
 vector<vector<int>> DisperseMatrix::rebuild()
 {
     vector<vector<int>> result(nFilas, vector<int>(nColumnas, 0)); // crea un matriz de 0 del tamaño original
@@ -85,6 +99,11 @@ vector<vector<int>> DisperseMatrix::rebuild()
 
     return result;
 }
+
+/* -- Modificadoras -- */
+
+/* Analizadoras */
+
 int DisperseMatrix::get(int i, int j)
 {
     bool flag = false;
@@ -150,3 +169,52 @@ vector<int> DisperseMatrix::getColVec(int columna)
     }
     return result;
 }
+
+/* -- Analizadoras -- */
+
+/* Sobrecarga operadores */
+
+DisperseMatrix DisperseMatrix::operator+(DisperseMatrix &matriz)
+{
+    DisperseMatrix ans;
+    int m1FilTam = -2147483647, m1ColTam = -2147483647, m2FilTam = -2147483647, m2ColTam = -2147483647;
+
+    // Se verifica el tamaño de la matriz para saber si se puede sumar
+    for (int i = 0; i < filas.size(); i++)
+    {
+        if (filas[i] > m1FilTam)
+            m1FilTam = filas[i];
+
+        if (columnas[i] > m1ColTam)
+            m1ColTam = columnas[i];
+    }
+
+    for (int i = 0; i < matriz.filas.size(); i++)
+    {
+        if (matriz.filas[i] > m2FilTam)
+            m2FilTam = matriz.filas[i];
+
+        if (matriz.columnas[i] > m2ColTam)
+            m2ColTam = matriz.columnas[i];
+    }
+
+    if (m1FilTam == m2FilTam && m1ColTam == m2ColTam)
+    {
+        int temp;
+        for (int i = 0; i < valores.size(); i++)
+        {
+            temp = valores[i] + matriz.valores[i];
+            ans.valores.push_back(temp);
+        }
+        ans.filas = filas;
+        ans.columnas = columnas;
+    }
+    else
+    {
+        cout << "La matrices son de diferente tamanio. No se pueden sumar." << endl;
+    }
+
+    return ans;
+}
+
+/* -- Sobrecarga operadores -- */
