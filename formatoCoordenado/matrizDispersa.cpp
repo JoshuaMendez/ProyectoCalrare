@@ -315,4 +315,5 @@ bool DisperseMatrix::operator==(DisperseMatrix &matrix2)
 
     return ans; // Todas las posiciones coinciden
 }
+
 /* -- Sobrecarga operadores -- */
