@@ -65,7 +65,7 @@ public:
     /* Sobrecarga operadores */
     DisperseMatrix operator+(DisperseMatrix &matriz); // Suma entre 2 matrices --ready
     DisperseMatrix operator*(DisperseMatrix &matriz); // Multiplicación entre 2 matrices --ready
-    bool operator==(DisperseMatrix &matriz);          // Verifica si 2 matrices son iguales --J
+    bool operator==(DisperseMatrix &matriz);          // Verifica si 2 matrices son iguales --ready
 };
 
 #endif
