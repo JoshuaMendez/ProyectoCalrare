@@ -3,7 +3,7 @@
 using namespace std;
 int main()
 {
-    vector<vector<int>> matriz = {{-3, 1},
+    vector<vector<int>> matriz = {{-3, 0},
                                     {2, 5},
                                     {8, -7}};
 

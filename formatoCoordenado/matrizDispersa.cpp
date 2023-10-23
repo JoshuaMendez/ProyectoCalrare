@@ -174,47 +174,61 @@ vector<int> DisperseMatrix::getColVec(int columna)
 
 /* Sobrecarga operadores */
 
-DisperseMatrix DisperseMatrix::operator+(DisperseMatrix &matriz)
+DisperseMatrix DisperseMatrix::operator+(DisperseMatrix &matrix2)
 {
-    DisperseMatrix ans;
-    int m1FilTam = -2147483647, m1ColTam = -2147483647, m2FilTam = -2147483647, m2ColTam = -2147483647;
+    DisperseMatrix result;
 
-    // Se verifica el tamaño de la matriz para saber si se puede sumar
-    for (int i = 0; i < filas.size(); i++)
+    int size1 = valores.size();
+    int size2 = matrix2.valores.size();
+
+    int i = 0, j = 0;
+
+    // Realiza la suma mientras haya elementos en ambas matrices
+    while (i < size1 && j < size2)
     {
-        if (filas[i] > m1FilTam)
-            m1FilTam = filas[i];
-
-        if (columnas[i] > m1ColTam)
-            m1ColTam = columnas[i];
-    }
-
-    for (int i = 0; i < matriz.filas.size(); i++)
-    {
-        if (matriz.filas[i] > m2FilTam)
-            m2FilTam = matriz.filas[i];
-
-        if (matriz.columnas[i] > m2ColTam)
-            m2ColTam = matriz.columnas[i];
-    }
-
-    if (m1FilTam == m2FilTam && m1ColTam == m2ColTam)
-    {
-        int temp;
-        for (int i = 0; i < valores.size(); i++)
+        if (filas[i] == matrix2.filas[j] && columnas[i] == matrix2.columnas[j])
         {
-            temp = valores[i] + matriz.valores[i];
-            ans.valores.push_back(temp);
+            result.valores.push_back(valores[i] + matrix2.valores[j]);
+            result.filas.push_back(filas[i]);
+            result.columnas.push_back(columnas[i]);
+            i++;
+            j++;
         }
-        ans.filas = filas;
-        ans.columnas = columnas;
-    }
-    else
-    {
-        cout << "La matrices son de diferente tamanio. No se pueden sumar." << endl;
+        else if (filas[i] < matrix2.filas[j] || (filas[i] == matrix2.filas[j] && columnas[i] < matrix2.columnas[j]))
+        {
+            result.valores.push_back(valores[i]);
+            result.filas.push_back(filas[i]);
+            result.columnas.push_back(columnas[i]);
+            i++;
+        }
+        else
+        {
+            result.valores.push_back(matrix2.valores[j]);
+            result.filas.push_back(matrix2.filas[j]);
+            result.columnas.push_back(matrix2.columnas[j]);
+            j++;
+        }
     }
 
-    return ans;
+    // Agrega los elementos restantes de la primera matriz, si los hay
+    while (i < size1)
+    {
+        result.valores.push_back(valores[i]);
+        result.filas.push_back(filas[i]);
+        result.columnas.push_back(columnas[i]);
+        i++;
+    }
+
+    // Agrega los elementos restantes de la segunda matriz, si los hay
+    while (j < size2)
+    {
+        result.valores.push_back(matrix2.valores[j]);
+        result.filas.push_back(matrix2.filas[j]);
+        result.columnas.push_back(matrix2.columnas[j]);
+        j++;
+    }
+
+    return result;
 }
 
 /* -- Sobrecarga operadores -- */
