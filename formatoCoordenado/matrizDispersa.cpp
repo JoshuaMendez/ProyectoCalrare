@@ -231,4 +231,88 @@ DisperseMatrix DisperseMatrix::operator+(DisperseMatrix &matrix2)
     return result;
 }
 
+DisperseMatrix DisperseMatrix::operator*(DisperseMatrix &matrix2)
+{
+    DisperseMatrix result;
+
+    int size1 = valores.size();
+    int size2 = matrix2.valores.size();
+
+    int numRows1 = 0;
+    int numCols1 = 0;
+    int numCols2 = 0;
+
+    // Determinar el número de filas y columnas de la matriz resultante
+    for (int i = 0; i < size1; i++)
+    {
+        if (filas[i] > numRows1)
+        {
+            numRows1 = filas[i];
+        }
+        if (columnas[i] > numCols1)
+        {
+            numCols1 = columnas[i];
+        }
+    }
+
+    for (int i = 0; i < size2; i++)
+    {
+        if (matrix2.filas[i] > numRows1)
+        {
+            numRows1 = matrix2.filas[i];
+        }
+        if (matrix2.columnas[i] > numCols2)
+        {
+            numCols2 = matrix2.columnas[i];
+        }
+    }
+
+    // Realizar la multiplicación
+    for (int i = 0; i <= numRows1; i++)
+    {
+        for (int j = 0; j <= numCols2; j++)
+        {
+            int product = 0;
+            for (int k = 0; k < size1; k++)
+            {
+                for (int l = 0; l < size2; l++)
+                {
+                    if (filas[k] == i && matrix2.columnas[l] == j && columnas[k] == matrix2.filas[l])
+                    {
+                        product += (valores[k] * matrix2.valores[l]);
+                    }
+                }
+            }
+            if (product != 0)
+            {
+                result.valores.push_back(product);
+                result.filas.push_back(i);
+                result.columnas.push_back(j);
+            }
+        }
+    }
+
+    return result;
+}
+
+bool DisperseMatrix::operator==(DisperseMatrix &matrix2)
+{
+    bool ans = true;
+    if (valores.size() != matrix2.valores.size())
+    {
+        ans = false; // Tienen diferentes números de elementos
+    }
+
+    for (int i = 0; i < valores.size(); i++)
+    {
+        if (valores[i] != matrix2.valores[i] ||
+            filas[i] != matrix2.filas[i] ||
+            columnas[i] != matrix2.columnas[i])
+        {
+            ans = false; // Elementos diferentes en alguna posición
+        }
+    }
+
+    return ans; // Todas las posiciones coinciden
+}
 /* -- Sobrecarga operadores -- */

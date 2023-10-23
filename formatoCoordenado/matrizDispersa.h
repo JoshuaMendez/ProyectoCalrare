@@ -63,8 +63,8 @@ public:
     vector<int> addMatrixListVec(DisperseMatrix matriz); // --S
 
     /* Sobrecarga operadores */
-    DisperseMatrix operator+(DisperseMatrix &matriz); // Suma entre 2 matrices --J
-    DisperseMatrix operator*(DisperseMatrix &matriz); // Multiplicación entre 2 matrices --S
+    DisperseMatrix operator+(DisperseMatrix &matriz); // Suma entre 2 matrices --ready
+    DisperseMatrix operator*(DisperseMatrix &matriz); // Multiplicación entre 2 matrices --ready
     bool operator==(DisperseMatrix &matriz);          // Verifica si 2 matrices son iguales --J
 };
 
