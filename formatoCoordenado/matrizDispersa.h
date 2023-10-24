@@ -29,22 +29,22 @@ public:
     vector<int> columnas;
     int nFilas, nColumnas;
 
-public:
+// public:
     /************************
      * OPERACIONES DEL TAD *
      ************************/
 
     /* Constructoras */
-    DisperseMatrix();
-    DisperseMatrix(int **&matriz, int m, int n);                     // Arreglo de 2 dimensiones
+    DisperseMatrix();                                                // Vacío --ready
+    DisperseMatrix(int **&matriz, int m, int n);                     // Arreglo de 2 dimensiones --ready
     DisperseMatrix(const vector<vector<int>> &matriz, int m, int n); // Vector de Vectores  --ready
-    DisperseMatrix(DisperseMatrix &matriz);                          // Punto 3 --J
+    DisperseMatrix(DisperseMatrix &matriz);                          // Punto 3 --ready
 
     /* Modificadoras */
     vector<vector<int>> rebuild();       // Reconstruir la matriz dispersa a normal con ceros y la retonar --ready
     void assign(int i, int j, int v);    // Modificar el valor en la posición i, j --J
     void add(DisperseMatrix &matriz);    // Suma entre matrices --S
-    void productVector(vector<int> vec); // Multiplica el objeto actual por el vector --J
+    void productVector(vector<int> &vec); // Multiplica el objeto actual por el vector --J
 
     /* Analizadoras */
     int get(int i, int j);                               // Obtener valor i, j --ready
@@ -59,8 +59,7 @@ public:
     void printMatrix(string sep);                        // Imprime la matriz con el separador --S
     int getMax();                                        // Retorna el mayor elemento de la matriz --J
     DisperseMatrix getTranspose();                       // Transpone la matriz --S
-    list<int> addMatrixList(DisperseMatrix matriz);          // --J
-    vector<int> addMatrixListVec(DisperseMatrix matriz); // --S
+    list<int> addMatrixList(DisperseMatrix &matriz);          // --J
 
     /* Sobrecarga operadores */
     DisperseMatrix operator+(DisperseMatrix &matriz); // Suma entre 2 matrices --ready
