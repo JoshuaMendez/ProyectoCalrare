@@ -58,7 +58,7 @@ public:
     vector<int> getDisperseColVec(int columna);          // --ready
     void printMatrix(string sep);                        // Imprime la matriz con el separador --S
     int getMax();                                        // Retorna el mayor elemento de la matriz --J
-    DisperseMatrix getTranspose();                       // Transpone la matriz --S
+    DisperseMatrix getTranspose();                       // Transpone la matriz --ready
     list<int> addMatrixList(DisperseMatrix &matriz);          // --J
 
     /* Sobrecarga operadores */

@@ -8,30 +8,10 @@ int main()
                                     {0, 4, 0, 0},
                                     {0, 0, 0, 0}};
 
-    DisperseMatrix matriz_1(matriz, 3, 2);
+    DisperseMatrix matriz_1(matriz, 4, 4);
 
-    cout << "valores";
-    for (int i = 0; i < matriz_1.valores.size(); i++)
-    {
-        cout << " " << matriz_1.valores[i];
-    }
-    cout << endl;
-
-    cout << "filas";
-    for (int i = 0; i < matriz_1.valores.size(); i++)
-    {
-        cout << " " << matriz_1.filas[i];
-    }
-    cout << endl;
-
-    cout << "columnas";
-    for (int i = 0; i < matriz_1.valores.size(); i++)
-    {
-        cout << " " << matriz_1.columnas[i];
-    }
-    cout << endl;
-
-    matriz_1.assign(0, 2, 5);
+    matriz_1.printMatrix("-");
+     matriz_1.getTranspose().printMatrix("-");
 
     
     return 0;

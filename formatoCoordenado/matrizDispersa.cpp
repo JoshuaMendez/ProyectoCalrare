@@ -255,6 +255,39 @@ vector<int> DisperseMatrix::getDisperseColVec(int columna)
     }
     return result;
 }
+void DisperseMatrix::printMatrix(string sep){
+    vector<vector<int>> matriz(nFilas, vector<int>(nColumnas, 0)); // crea un matriz de 0 del tamaño original
+    for (int i = 0; i < valores.size(); i++)
+    {
+        int valor = valores[i];
+        int fila = filas[i];
+        int columna = columnas[i];
+        matriz[fila][columna] = valor; // agrega los valores en las posicion original
+    }
+    for (int i = 0; i < matriz.size(); i++)
+    {
+        for ( int j = 0; j < matriz[i].size() -1; j++)
+        {
+            cout << matriz[i][j] << sep ;
+        }
+        cout << matriz[i][matriz[i].size() -1] ;
+        cout << endl;
+    }
+    
+}
+DisperseMatrix DisperseMatrix::getTranspose(){
+    DisperseMatrix matriz;
+    matriz.nFilas = nColumnas;
+    matriz.nColumnas = nFilas;
+    for (int i = 0; i < valores.size(); i++)
+    {
+        matriz.valores.push_back(valores[i]);
+        matriz.filas.push_back(columnas[i]);
+        matriz.columnas.push_back(filas[i]);
+    }
+    return matriz;
+    
+}
 
 /* -- Analizadoras -- */
 
