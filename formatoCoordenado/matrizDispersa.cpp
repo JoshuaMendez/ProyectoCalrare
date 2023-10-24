@@ -77,9 +77,9 @@ DisperseMatrix::DisperseMatrix(const vector<vector<int>> &matriz, int m, int n) 
 
 DisperseMatrix::DisperseMatrix(DisperseMatrix &matriz)
 {
-    vector<int> valores = matriz.valores;
-    vector<int> filas = matriz.filas;
-    vector<int> columnas = matriz.columnas;
+    valores = matriz.valores;
+    filas = matriz.filas;
+    columnas = matriz.columnas;
 }
 
 /* -- Constructoras -- */
@@ -374,9 +374,8 @@ DisperseMatrix DisperseMatrix::addMatrixList(list<DisperseMatrix> &l)
 {
     int i = 0;
     list<DisperseMatrix>::iterator it = l.begin();
-    // DisperseMatrix result = *this;
-
-    while (i < l.size())
+    
+    while (it != l.end())
     {
         advance(it, i);
         *this = *this + *it;
