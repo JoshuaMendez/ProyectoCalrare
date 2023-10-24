@@ -42,8 +42,8 @@ public:
     /* Modificadoras */
     vector<vector<int>> rebuild(); // Reconstruir la matriz dispersa a normal con ceros y la retonar --ready
     void assign(int i, int j, int v);     // Modificar el valor en la posición i, j --J
-    void add(DisperseMatrix &matriz);     // Suma entre matrices --S
-    void productVector(vector<int> vec);  // Multiplica el objeto actual por el vector --J
+    void add(DisperseMatrix &matriz);     // Suma entre matrices de igual tamaño --ready
+    void productVector(vector<int> &vec);  // Multiplica el objeto actual por el vector --J
 
     /* Analizadoras */
     int get(int i, int j);            // Obtener valor i, j --ready
@@ -52,14 +52,13 @@ public:
     Lista getColLis(int columna);         // Retornar columna --J
     vector<int> getColVec(int columna); //  Retornar columna --ready
     Lista getDisperseRowLis(int fila);    // Retornar fila con ceros -- J
-    vector<int> getDisperseRowVec(int fila); // --S
+    vector<int> getDisperseRowVec(int fila); // Retornar fila con ceros -- ready
     Lista getDisperseColLis(int columna); // Retornar columna con ceros --J
-    vector<int> getDisperseColVec(int columna); // --J
+    vector<int> getDisperseColVec(int columna); // --s
     void printMatrix(string sep);      // Imprime la matriz con el separador --S
     int getMax();                      // Retorna el mayor elemento de la matriz --J
     DisperseMatrix getTranspose();     // Transpone la matriz --S
-    Lista addMatrixList(DisperseMatrix matriz); // --J
-    vector<int> addMatrixListVec(DisperseMatrix matriz); // --S
+    Lista addMatrixList(DisperseMatrix &matriz); // --J
 
     /* Sobrecarga operadores */
     DisperseMatrix operator+(DisperseMatrix &matriz); // Suma entre 2 matrices --J
