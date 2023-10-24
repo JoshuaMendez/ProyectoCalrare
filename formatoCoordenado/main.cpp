@@ -3,22 +3,36 @@
 using namespace std;
 int main()
 {
-    vector<vector<int>> matriz = {{5, 3},
-                                    {-2, 9},
-                                    {7, -4}};
-
-    vector<vector<int>> matriz2 = {{5, 3},
-                                    {-2, 9},
-                                    {7, -4}};
+    vector<vector<int>> matriz = {{1, 0, 2, 0},
+                                    {0, 9, 0, 3},
+                                    {0, 4, 0, 0},
+                                    {0, 0, 0, 0}};
 
     DisperseMatrix matriz_1(matriz, 3, 2);
-    DisperseMatrix matriz_2(matriz2, 3, 2);
 
-    bool calc;
+    cout << "valores";
+    for (int i = 0; i < matriz_1.valores.size(); i++)
+    {
+        cout << " " << matriz_1.valores[i];
+    }
+    cout << endl;
 
-    calc = matriz_1 == matriz_2;
+    cout << "filas";
+    for (int i = 0; i < matriz_1.valores.size(); i++)
+    {
+        cout << " " << matriz_1.filas[i];
+    }
+    cout << endl;
 
-    cout << "calc " << calc << endl;
+    cout << "columnas";
+    for (int i = 0; i < matriz_1.valores.size(); i++)
+    {
+        cout << " " << matriz_1.columnas[i];
+    }
+    cout << endl;
 
+    matriz_1.assign(0, 2, 5);
+
+    
     return 0;
 }

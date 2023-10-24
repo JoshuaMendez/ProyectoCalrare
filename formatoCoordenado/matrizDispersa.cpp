@@ -100,6 +100,31 @@ vector<vector<int>> DisperseMatrix::rebuild()
     return result;
 }
 
+void DisperseMatrix::assign(int i, int j, int v)
+{
+    int cont = 0;
+    bool flag = true;
+
+    // Se verifica que la posición no exista.
+    while (flag && cont < valores.size())
+    {
+        if (filas[cont] == i && columnas[cont] == j)
+        {
+            cout << "if" << endl;
+            valores[cont] = v;
+            flag = false;
+        }
+        cont++;
+    }
+
+    if (flag)
+    {
+        valores.push_back(v);
+        filas.push_back(i);
+        columnas.push_back(j);
+    }
+}
+
 /* -- Modificadoras -- */
 
 /* Analizadoras */
@@ -135,6 +160,7 @@ int DisperseMatrix::get(int i, int j)
     }
     return ans;
 }
+
 vector<int> DisperseMatrix::getRowVec(int fila)
 {
     vector<int> result;
@@ -152,6 +178,7 @@ vector<int> DisperseMatrix::getRowVec(int fila)
     }
     return result;
 }
+
 vector<int> DisperseMatrix::getColVec(int columna)
 {
     vector<int> result;
