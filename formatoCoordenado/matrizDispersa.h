@@ -43,7 +43,7 @@ public:
     /* Modificadoras */
     vector<vector<int>> rebuild();       // Reconstruir la matriz dispersa a normal con ceros y la retonar --ready
     void assign(int i, int j, int v);    // Modificar el valor en la posición i, j --J
-    void add(DisperseMatrix &matriz);    // Suma entre matrices --S
+    void add(DisperseMatrix &matriz);    // Suma entre matrices --ready
     void productVector(vector<int> &vec); // Multiplica el objeto actual por el vector --J
 
     /* Analizadoras */
@@ -53,9 +53,9 @@ public:
     list<int> getColList(int columna);                        // Retornar columna --J
     vector<int> getColVec(int columna);                  //  Retornar columna --ready
     list<int> getDisperseRowLis(int fila);                   // Retornar fila con ceros -- J
-    vector<int> getDisperseRowVec(int fila);             // --S
+    vector<int> getDisperseRowVec(int fila);             // Retornar una fila con ceros --ready
     list<int> getDisperseColLis(int columna);                // Retornar columna con ceros --J
-    vector<int> getDisperseColVec(int columna);          // --J
+    vector<int> getDisperseColVec(int columna);          // --ready
     void printMatrix(string sep);                        // Imprime la matriz con el separador --S
     int getMax();                                        // Retorna el mayor elemento de la matriz --J
     DisperseMatrix getTranspose();                       // Transpone la matriz --S
