@@ -125,6 +125,30 @@ void DisperseMatrix::assign(int i, int j, int v)
     }
 }
 
+void DisperseMatrix::add(DisperseMatrix &matriz)
+{
+    cout << valores.size() << endl;
+    for (int i = 0; i < matriz.valores.size(); i++)
+    {
+        bool flag = false;
+        for (int j = 0; j < valores.size() && !flag; j++)
+        {
+            if (matriz.filas[i] == filas[j] && matriz.columnas[i] == columnas[j])
+            {
+                valores[j] += matriz.valores[i];
+                flag = true;
+            }
+        }
+        if (flag == false)
+        {
+            cout << "agregando " << matriz.valores[i] << endl;
+            valores.push_back(matriz.valores[i]);
+            filas.push_back(matriz.filas[i]);
+            columnas.push_back(matriz.columnas[i]);
+        }
+    }
+}
+
 /* -- Modificadoras -- */
 
 /* Analizadoras */
@@ -161,6 +185,20 @@ int DisperseMatrix::get(int i, int j)
     return ans;
 }
 
+list<int> DisperseMatrix::getRowLis(int fila)
+{
+    list<int> result;
+    int i;
+    for (i = 0; i < valores.size(); i++) // agrega en la posicion respectiva el valor diferente a 0
+    {
+        if (fila == filas[i])
+        {
+            result.push_back(valores[i]);
+        }
+    }
+    return result;
+}
+
 vector<int> DisperseMatrix::getRowVec(int fila)
 {
     vector<int> result;
@@ -172,6 +210,21 @@ vector<int> DisperseMatrix::getRowVec(int fila)
     for (i = 0; i < valores.size(); i++) // agrega en la posicion respectiva el valor diferente a 0
     {
         if (fila == filas[i])
+        {
+            result.push_back(valores[i]);
+        }
+    }
+    return result;
+}
+
+list<int> DisperseMatrix::getColLis(int columna)
+{
+    list<int> result;
+    int i;
+
+    for (i = 0; i < valores.size(); i++) // agrega en la posicion respectiva el valor diferente a 0
+    {
+        if (columnas[i] == columna)
         {
             result.push_back(valores[i]);
         }
@@ -197,30 +250,6 @@ vector<int> DisperseMatrix::getColVec(int columna)
     return result;
 }
 
-void DisperseMatrix::add(DisperseMatrix &matriz)
-{
-    cout << valores.size() << endl;
-    for (int i = 0; i < matriz.valores.size(); i++)
-    {
-        bool flag = false;
-        for (int j = 0; j < valores.size() && !flag; j++)
-        {
-            if (matriz.filas[i] == filas[j] && matriz.columnas[i] == columnas[j])
-            {
-                valores[j] += matriz.valores[i];
-                flag = true;
-            }
-        }
-        if (flag == false)
-        {
-            cout << "agregando " << matriz.valores[i] << endl;
-            valores.push_back(matriz.valores[i]);
-            filas.push_back(matriz.filas[i]);
-            columnas.push_back(matriz.columnas[i]);
-        }
-    }
-}
-
 vector<int> DisperseMatrix::getDisperseRowVec(int fila)
 {
     vector<int> result(nColumnas, 0);
@@ -238,6 +267,43 @@ vector<int> DisperseMatrix::getDisperseRowVec(int fila)
     }
     return result;
 }
+
+list<int> DisperseMatrix::getDisperseRowLis(int fila)
+{
+    list<int> result(nColumnas, 0);
+    int i;
+    list<int>::iterator it = result.begin();
+    for (i = 0; i < valores.size(); i++) // agrega en la posicion respectiva el valor diferente a 0
+    {
+        it = result.begin();
+        if (fila == filas[i])
+        {
+            advance(it, columnas[i]);
+            result.insert(it, valores[i]);
+            result.erase(it);
+        }
+    }
+    return result;
+}
+
+list<int> DisperseMatrix::getDisperseColLis(int columna)
+{
+    list<int> result(nFilas, 0);
+    int i;
+    list<int>::iterator it = result.begin();
+    for (i = 0; i < valores.size(); i++) // agrega en la posicion respectiva el valor diferente a 0
+    {
+        it = result.begin();
+        if (columnas[i] == columna)
+        {
+            advance(it, filas[i]);
+            result.insert(it, valores[i]);
+            result.erase(it);
+        }
+    }
+    return result;
+}
+
 vector<int> DisperseMatrix::getDisperseColVec(int columna)
 {
     vector<int> result(nFilas, 0);
@@ -255,7 +321,9 @@ vector<int> DisperseMatrix::getDisperseColVec(int columna)
     }
     return result;
 }
-void DisperseMatrix::printMatrix(string sep){
+
+void DisperseMatrix::printMatrix(string sep)
+{
     vector<vector<int>> matriz(nFilas, vector<int>(nColumnas, 0)); // crea un matriz de 0 del tamaño original
     for (int i = 0; i < valores.size(); i++)
     {
@@ -266,16 +334,30 @@ void DisperseMatrix::printMatrix(string sep){
     }
     for (int i = 0; i < matriz.size(); i++)
     {
-        for ( int j = 0; j < matriz[i].size() -1; j++)
+        for (int j = 0; j < matriz[i].size() - 1; j++)
         {
-            cout << matriz[i][j] << sep ;
+            cout << matriz[i][j] << sep;
         }
-        cout << matriz[i][matriz[i].size() -1] ;
+        cout << matriz[i][matriz[i].size() - 1];
         cout << endl;
     }
-    
 }
-DisperseMatrix DisperseMatrix::getTranspose(){
+
+int DisperseMatrix::getMax()
+{
+    int ans = -2147483648;
+
+    for (int i = 0; i < valores.size(); i++)
+    {
+        if (valores[i] > ans)
+            ans = valores[i];
+    }
+
+    return ans;
+}
+
+DisperseMatrix DisperseMatrix::getTranspose()
+{
     DisperseMatrix matriz;
     matriz.nFilas = nColumnas;
     matriz.nColumnas = nFilas;
@@ -286,7 +368,21 @@ DisperseMatrix DisperseMatrix::getTranspose(){
         matriz.columnas.push_back(filas[i]);
     }
     return matriz;
-    
+}
+
+DisperseMatrix DisperseMatrix::addMatrixList(list<DisperseMatrix> &l)
+{
+    int i = 0;
+    list<DisperseMatrix>::iterator it = l.begin();
+    // DisperseMatrix result = *this;
+
+    while (i < l.size())
+    {
+        advance(it, i);
+        *this = *this + *it;
+    }
+
+    return *this;
 }
 
 /* -- Analizadoras -- */
