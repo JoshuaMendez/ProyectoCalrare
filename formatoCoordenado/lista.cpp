@@ -1,43 +1,50 @@
 #include "lista.h"
 
-Lista::Lista(){
+Lista::Lista()
+{
   act = NULL;
 }
 
-void Lista::anxLista(Elemento elem){
-  Nodo* tmp;
-  Nodo* nuevo = new Nodo;
+void Lista::anxLista(Elemento elem)
+{
+  Nodo *tmp;
+  Nodo *nuevo = new Nodo;
   nuevo->dato = elem;
   nuevo->sig = NULL;
   nuevo->ant = NULL;
 
-  if(act == NULL)
+  if (act == NULL)
     act = nuevo;
-  else{
+  else
+  {
     tmp = act;
-    while(tmp->sig != NULL)
+    while (tmp->sig != NULL)
       tmp = tmp->sig;
     tmp->sig = nuevo;
     nuevo->ant = tmp;
   }
 }
 
-void Lista::insLista(Elemento elem, int pos){
+void Lista::insLista(Elemento elem, int pos)
+{
   Nodo *nuevo, *tmp;
   nuevo = new Nodo;
   nuevo->dato = elem;
   nuevo->sig = NULL;
   nuevo->ant = NULL;
 
-  if(pos >= 1 && pos <= longLista()){
-    if(pos == 1){
+  if (pos >= 1 && pos <= longLista())
+  {
+    if (pos == 1)
+    {
       nuevo->sig = act;
       act->ant = nuevo;
       act = nuevo;
     }
-    else{
+    else
+    {
       tmp = act;
-      for(int i = 0; i < pos - 2; i++)
+      for (int i = 0; i < pos - 2; i++)
         tmp = tmp->sig;
       nuevo->sig = tmp->sig;
       nuevo->ant = tmp;
@@ -47,15 +54,18 @@ void Lista::insLista(Elemento elem, int pos){
   }
 }
 
-void Lista::elimLista(int pos){
+void Lista::elimLista(int pos)
+{
   Nodo *tmp, *elim, *sig;
-  if(pos >= 1 && pos <= longLista()){
-    if(pos == 1)
+  if (pos >= 1 && pos <= longLista())
+  {
+    if (pos == 1)
       act = act->sig;
-    else{
+    else
+    {
       tmp = act;
-      for(int i = 0; i < pos-2; i++)
-          tmp = tmp->sig;
+      for (int i = 0; i < pos - 2; i++)
+        tmp = tmp->sig;
       elim = tmp->sig;
       sig = tmp->sig->sig;
       tmp->sig = sig;
@@ -65,20 +75,23 @@ void Lista::elimLista(int pos){
   }
 }
 
-Elemento Lista::infoLista(int pos){
-   Nodo* tmp = act;
-   
-   for(int i = 1; i < pos; i++)
-      tmp = tmp->sig;
-      
-   return tmp->dato;
+Elemento Lista::infoLista(int pos)
+{
+  Nodo *tmp = act;
+
+  for (int i = 1; i < pos; i++)
+    tmp = tmp->sig;
+
+  return tmp->dato;
 }
 
-int Lista::longLista(){
-  Nodo* tmp = act;
+int Lista::longLista()
+{
+  Nodo *tmp = act;
   int cont = 0;
 
-  while(tmp != NULL){
+  while (tmp != NULL)
+  {
     tmp = tmp->sig;
     cont++;
   }
@@ -86,6 +99,7 @@ int Lista::longLista(){
   return cont;
 }
 
-bool Lista::vaciaLista(){
+bool Lista::vaciaLista()
+{
   return act == NULL;
 }
