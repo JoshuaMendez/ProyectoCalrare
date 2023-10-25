@@ -12,7 +12,7 @@
 
 #include <iostream>
 #include <vector>
-#include "lista.h"
+#include <list>
 #include <string>
 
 using namespace std;
@@ -20,56 +20,49 @@ using namespace std;
 /************************
  * ESTRUCTURAS DE DATOS *
  ************************/
-typedef int Elemento;
-
-class Nodo
-{
-public:
-    Elemento fila;
-    Elemento columna;
-    Elemento dato;
-    Nodo *sig;
-    Nodo *ant;
-    Nodo *lista;
-};
 
 class DisperseMatrix
 {
 private:
-    Nodo *act;
-
+    vector<list<pair<int, int>>> matriz ;
+    int nFilas;
+    int nColumnas;
 public:
     /************************
      * OPERACIONES DEL TAD *
      ************************/
-
-    /* Constructoras */
-    void MatrizDispersa();
-    void MatrizDispersa(int **&matriz, int m, int n); // Arreglo de 2 dimensiones
-    void MatrizDispersa(vector<vector<int>> &matriz); // Vector de Vectores
-    void MatrizDispersa(DisperseMatrix &matriz);      // Punto 3
+ /* Constructoras */
+    DisperseMatrix();                                                // Vacío --J
+    DisperseMatrix(int **&matriz, int m, int n);                     // Arreglo de 2 dimensiones --S
+    DisperseMatrix(const vector<vector<int>> &matriz, int m, int n); // Vector de Vectores  --J
+    DisperseMatrix(DisperseMatrix &matriz);                          // Punto 3 --S
 
     /* Modificadoras */
-    void rebuild(DisperseMatrix &matriz); // Reconstruir la matriz dispersa a normal con ceros
-    void assign(int i, int j, int v);     // Modificar el valor en la posición i, j
-    void add(DisperseMatrix &matriz);     // Suma entre matrices
-    void productVector(vector<int> vec);  // Multiplica el objeto actual por el vector
+    vector<vector<int>> rebuild();        // Reconstruir la matriz dispersa a normal con ceros y la retonar --J
+    void assign(int i, int j, int v);     // Modificar el valor en la posición i, j --S
+    void add(DisperseMatrix &matriz);     // Suma entre matrices --J
+    void productVector(vector<int> &vec); // Multiplica el objeto actual por el vector --S
 
     /* Analizadoras */
-    void get(int i, int j);            // Obtener valor i, j
-    Lista getRow(int fila);            // Retornar fila
-    Lista getCol(int columna);         // Retornar columna
-    Lista getDisperseRow(int fila);    // Retornar fila con ceros
-    Lista getDisperseCol(int columna); // Retornar columna con ceros
-    void printMatrix(string sep);      // Imprime la matriz con el separador
-    int getMax();                      // Retorna el mayor elemento de la matriz
-    DisperseMatrix getTranspose();     // Transpone la matriz
-    Lista addMatrixList(DisperseMatrix matriz);
+    int get(int i, int j);                           // Obtener valor i, j --J
+    list<int> getRowLis(int fila);                   // Retornar fila --S
+    vector<int> getRowVec(int fila);                 // Retornar fila --J
+    list<int> getColLis(int columna);                // Retornar columna --S
+    vector<int> getColVec(int columna);              //  Retornar columna --J
+    list<int> getDisperseRowLis(int fila);           // Retornar fila con ceros --S
+    vector<int> getDisperseRowVec(int fila);         // Retornar una fila con ceros --J
+    list<int> getDisperseColLis(int columna);        // Retornar columna con ceros --S
+    vector<int> getDisperseColVec(int columna);      // --J
+    void printMatrix(string sep);                    // Imprime la matriz con el separador --S
+    int getMax();                                    // Retorna el mayor elemento de la matriz --J
+    DisperseMatrix getTranspose();                   // Transpone la matriz --S
+    DisperseMatrix addMatrixList(list<DisperseMatrix> &matriz); // --J
 
     /* Sobrecarga operadores */
-    DisperseMatrix operator+(DisperseMatrix &matriz); // Suma entre 2 matrices
-    DisperseMatrix operator*(DisperseMatrix &matriz); // Multiplicación entre 2 matrices
-    bool operator==(DisperseMatrix &matriz);          // Verifica si 2 matrices son iguales
+    DisperseMatrix operator+(DisperseMatrix &matriz); // Suma entre 2 matrices --S
+    DisperseMatrix operator*(DisperseMatrix &matriz); // Multiplicación entre 2 matrices --J
+    bool operator==(DisperseMatrix &matriz);          // Verifica si 2 matrices son iguales --S
 };
 
 #endif
+
