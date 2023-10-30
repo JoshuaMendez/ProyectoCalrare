@@ -29,28 +29,6 @@ DisperseMatrix::DisperseMatrix(int **&matriz, int fil, int col) // Arreglo de 2 
             }
         }
     }
-
-    // // Debugging Zone
-    // cout << "Valores" << endl;
-    // for (int h = 0; h < valores.size(); h++)
-    // {
-    //     cout << valores[h] << " ";
-    // }
-    // cout << endl;
-
-    // cout << "Filas" << endl;
-    // for (int h = 0; h < filas.size(); h++)
-    // {
-    //     cout << filas[h] << " ";
-    // }
-    // cout << endl;
-
-    // cout << "Columnas" << endl;
-    // for (int h = 0; h < columnas.size(); h++)
-    // {
-    //     cout << columnas[h] << " ";
-    // }
-    // cout << endl;
 }
 
 DisperseMatrix::DisperseMatrix(const vector<vector<int>> &matriz, int m, int n) // constructor funcional
@@ -283,14 +261,14 @@ vector<int> DisperseMatrix::getDisperseRowVec(int fila)
 list<int> DisperseMatrix::getDisperseRowLis(int fila)
 {
     list<int> result(nColumnas, 0);
-    int i;
     list<int>::iterator it = result.begin();
-    for (i = 0; i < valores.size(); i++) // agrega en la posicion respectiva el valor diferente a 0
+
+    for (int i = 0; i < valores.size(); i++) // agrega en la posicion respectiva el valor diferente a 0
     {
         it = result.begin();
         if (fila == filas[i])
         {
-            it = it + columnas[i];
+            // *it = *it + columnas[i];
             advance(it, columnas[i]);
             result.insert(it, valores[i]);
             result.erase(it);
@@ -302,13 +280,14 @@ list<int> DisperseMatrix::getDisperseRowLis(int fila)
 list<int> DisperseMatrix::getDisperseColLis(int columna)
 {
     list<int> result(nFilas, 0);
-    int i;
     list<int>::iterator it = result.begin();
-    for (i = 0; i < valores.size(); i++) // agrega en la posicion respectiva el valor diferente a 0
+
+    for (int i = 0; i < valores.size(); i++) // agrega en la posicion respectiva el valor diferente a 0
     {
         it = result.begin();
         if (columnas[i] == columna)
         {
+            // *it = *it + filas[i];
             advance(it, filas[i]);
             result.insert(it, valores[i]);
             result.erase(it);
@@ -457,69 +436,69 @@ DisperseMatrix DisperseMatrix::operator+(DisperseMatrix &matrix2)
     return result;
 }
 
-DisperseMatrix DisperseMatrix::operator*(DisperseMatrix &matrix2)
-{
-    DisperseMatrix result;
+// DisperseMatrix DisperseMatrix::operator*(DisperseMatrix &matrix2)
+// {
+//     DisperseMatrix result;
 
-    int size1 = valores.size();
-    int size2 = matrix2.valores.size();
+//     int size1 = valores.size();
+//     int size2 = matrix2.valores.size();
 
-    int numRows1 = 0;
-    int numCols1 = 0;
-    int numCols2 = 0;
+//     int numRows1 = 0;
+//     int numCols1 = 0;
+//     int numCols2 = 0;
 
-    // Determinar el número de filas y columnas de la matriz resultante
-    for (int i = 0; i < size1; i++)
-    {
-        if (filas[i] > numRows1)
-        {
-            numRows1 = filas[i];
-        }
-        if (columnas[i] > numCols1)
-        {
-            numCols1 = columnas[i];
-        }
-    }
+//     // Determinar el número de filas y columnas de la matriz resultante
+//     for (int i = 0; i < size1; i++)
+//     {
+//         if (filas[i] > numRows1)
+//         {
+//             numRows1 = filas[i];
+//         }
+//         if (columnas[i] > numCols1)
+//         {
+//             numCols1 = columnas[i];
+//         }
+//     }
 
-    for (int i = 0; i < size2; i++)
-    {
-        if (matrix2.filas[i] > numRows1)
-        {
-            numRows1 = matrix2.filas[i];
-        }
-        if (matrix2.columnas[i] > numCols2)
-        {
-            numCols2 = matrix2.columnas[i];
-        }
-    }
+//     for (int i = 0; i < size2; i++)
+//     {
+//         if (matrix2.filas[i] > numRows1)
+//         {
+//             numRows1 = matrix2.filas[i];
+//         }
+//         if (matrix2.columnas[i] > numCols2)
+//         {
+//             numCols2 = matrix2.columnas[i];
+//         }
+//     }
 
-    // Realizar la multiplicación
-    for (int i = 0; i <= numRows1; i++)
-    {
-        for (int j = 0; j <= numCols2; j++)
-        {
-            int product = 0;
-            for (int k = 0; k < size1; k++)
-            {
-                for (int l = 0; l < size2; l++)
-                {
-                    if (filas[k] == i && matrix2.columnas[l] == j && columnas[k] == matrix2.filas[l])
-                    {
-                        product += (valores[k] * matrix2.valores[l]);
-                    }
-                }
-            }
-            if (product != 0)
-            {
-                result.valores.push_back(product);
-                result.filas.push_back(i);
-                result.columnas.push_back(j);
-            }
-        }
-    }
+//     // Realizar la multiplicación
+//     for (int i = 0; i <= numRows1; i++)
+//     {
+//         for (int j = 0; j <= numCols2; j++)
+//         {
+//             int product = 0;
+//             for (int k = 0; k < size1; k++)
+//             {
+//                 for (int l = 0; l < size2; l++)
+//                 {
+//                     if (filas[k] == i && matrix2.columnas[l] == j && columnas[k] == matrix2.filas[l])
+//                     {
+//                         product += (valores[k] * matrix2.valores[l]);
+//                     }
+//                 }
+//             }
+//             if (product != 0)
+//             {
+//                 result.valores.push_back(product);
+//                 result.filas.push_back(i);
+//                 result.columnas.push_back(j);
+//             }
+//         }
+//     }
 
-    return result;
-}
+//     return result;
+// }
 
 bool DisperseMatrix::operator==(DisperseMatrix &matrix2)
 {
