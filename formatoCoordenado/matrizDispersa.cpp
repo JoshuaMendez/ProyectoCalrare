@@ -149,6 +149,18 @@ void DisperseMatrix::add(DisperseMatrix &matriz)
     }
 }
 
+void DisperseMatrix::productVector(vector<int> &vec)
+{
+    // Cuando se multiplica un vector por una matriz cada valor del vector multiplica una de las columnas de la matriz
+    // Puedes asumir que siempre los tamaños serán consistentes
+    int i = 0;
+    while (i < valores.size())
+    {
+        valores[i] *= vec[columnas[i]];
+        i++;
+    }
+}
+
 /* -- Modificadoras -- */
 
 /* Analizadoras */
@@ -278,6 +290,7 @@ list<int> DisperseMatrix::getDisperseRowLis(int fila)
         it = result.begin();
         if (fila == filas[i])
         {
+            it = it + columnas[i];
             advance(it, columnas[i]);
             result.insert(it, valores[i]);
             result.erase(it);
@@ -368,6 +381,19 @@ DisperseMatrix DisperseMatrix::getTranspose()
         matriz.columnas.push_back(filas[i]);
     }
     return matriz;
+}
+
+DisperseMatrix DisperseMatrix::addMatrixList(list<DisperseMatrix> &l)
+{
+    DisperseMatrix ans;
+    list<DisperseMatrix>::iterator it = l.begin();
+
+    for (it; it != l.end(); ++it)
+    {
+        ans = (ans) + (*it);
+    }
+
+    return ans;
 }
 
 /* -- Analizadoras -- */
@@ -517,16 +543,3 @@ bool DisperseMatrix::operator==(DisperseMatrix &matrix2)
 }
 
 /* -- Sobrecarga operadores -- */
-
-DisperseMatrix DisperseMatrix::addMatrixList(list<DisperseMatrix> &l)
-{
-    DisperseMatrix ans;
-    list<DisperseMatrix>::const_iterator it = l.begin();
-
-    for (it; it != l.end(); ++it)
-    {
-        ans = (ans) + (*it);
-    }
-
-    return ans;
-}

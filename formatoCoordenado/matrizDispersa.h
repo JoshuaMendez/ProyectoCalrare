@@ -44,7 +44,7 @@ public:
     vector<vector<int>> rebuild();        // Reconstruir la matriz dispersa a normal con ceros y la retonar --ready
     void assign(int i, int j, int v);     // Modificar el valor en la posición i, j --ready
     void add(DisperseMatrix &matriz);     // Suma entre matrices --ready
-    void productVector(vector<int> &vec); // Multiplica el objeto actual por el vector --J
+    void productVector(vector<int> &vec); // Multiplica el objeto actual por el vector --ready
 
     /* Analizadoras */
     int get(int i, int j);                           // Obtener valor i, j --ready
@@ -59,7 +59,7 @@ public:
     void printMatrix(string sep);                    // Imprime la matriz con el separador --ready
     int getMax();                                    // Retorna el mayor elemento de la matriz --ready
     DisperseMatrix getTranspose();                   // Transpone la matriz --ready
-    DisperseMatrix addMatrixList(list<DisperseMatrix> &matriz); // --J
+    DisperseMatrix addMatrixList(list<DisperseMatrix> &matriz); // --ready
 
     /* Sobrecarga operadores */
     DisperseMatrix operator+(DisperseMatrix &matriz); // Suma entre 2 matrices --ready
