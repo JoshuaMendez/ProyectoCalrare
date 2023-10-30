@@ -75,7 +75,7 @@ DisperseMatrix::DisperseMatrix(const vector<vector<int>> &matriz, int m, int n) 
     }
 }
 
-DisperseMatrix::DisperseMatrix(DisperseMatrix &matriz)
+DisperseMatrix::DisperseMatrix(const DisperseMatrix &matriz)
 {
     valores = matriz.valores;
     filas = matriz.filas;
@@ -370,20 +370,6 @@ DisperseMatrix DisperseMatrix::getTranspose()
     return matriz;
 }
 
-DisperseMatrix DisperseMatrix::addMatrixList(list<DisperseMatrix> &l)
-{
-    int i = 0;
-    list<DisperseMatrix>::iterator it = l.begin();
-    
-    while (it != l.end())
-    {
-        advance(it, i);
-        *this = *this + *it;
-    }
-
-    return *this;
-}
-
 /* -- Analizadoras -- */
 
 /* Sobrecarga operadores */
@@ -531,3 +517,16 @@ bool DisperseMatrix::operator==(DisperseMatrix &matrix2)
 }
 
 /* -- Sobrecarga operadores -- */
+
+DisperseMatrix DisperseMatrix::addMatrixList(list<DisperseMatrix> &l)
+{
+    DisperseMatrix ans;
+    list<DisperseMatrix>::const_iterator it = l.begin();
+
+    for (it; it != l.end(); ++it)
+    {
+        ans = (ans) + (*it);
+    }
+
+    return ans;
+}

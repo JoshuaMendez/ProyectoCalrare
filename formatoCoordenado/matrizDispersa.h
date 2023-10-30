@@ -38,7 +38,7 @@ public:
     DisperseMatrix();                                                // Vacío --ready
     DisperseMatrix(int **&matriz, int m, int n);                     // Arreglo de 2 dimensiones --ready
     DisperseMatrix(const vector<vector<int>> &matriz, int m, int n); // Vector de Vectores  --ready
-    DisperseMatrix(DisperseMatrix &matriz);                          // Punto 3 --ready
+    DisperseMatrix(const DisperseMatrix &matriz);                          // Punto 3 --ready
 
     /* Modificadoras */
     vector<vector<int>> rebuild();        // Reconstruir la matriz dispersa a normal con ceros y la retonar --ready

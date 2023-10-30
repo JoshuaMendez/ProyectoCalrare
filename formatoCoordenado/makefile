@@ -1,6 +1,6 @@
 CC = g++
 CFLAGS = -Wall
-TARGET = a
+TARGET = a.out
 SRCDIR = /home/larata/Escritorio/ProyectoCalrare/formatoCoordenado
 SRCS = $(SRCDIR)/main.cpp $(SRCDIR)/matrizDispersa.cpp
 OBJS = $(SRCS:.cpp=.o)
