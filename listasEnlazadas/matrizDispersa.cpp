@@ -8,22 +8,24 @@ DisperseMatrix::DisperseMatrix()
     nFilas = 0;
     nColumnas = 0;
 }
- DisperseMatrix::DisperseMatrix(int **&matrizA, int m, int n){
-       nFilas = m;
-       nColumnas = n; 
-       for (int i = 0; i < m; i++)
-       {
-            for (int j = 0; j < n; j++)
+DisperseMatrix::DisperseMatrix(int **&matrizA, int m, int n)
+{
+    nFilas = m;
+    nColumnas = n;
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            if (matrizA[m][n] != 0)
             {
-               if(matrizA[m][n] != 0){
-                    pair<int , int > par;
-                    par.first = matrizA[m][n];
-                    par.second = j;
-                    matriz[i].push_back(par);
-               }
-            }    
-       }   
- }
+                pair<int, int> par;
+                par.first = matrizA[m][n];
+                par.second = j;
+                matriz[i].push_back(par);
+            }
+        }
+    }
+}
 
 DisperseMatrix::DisperseMatrix(const vector<vector<int>> &vec, int m, int n)
 {
@@ -46,7 +48,8 @@ DisperseMatrix::DisperseMatrix(const vector<vector<int>> &vec, int m, int n)
     nFilas = m;
     nColumnas = n;
 }
-DisperseMatrix::DisperseMatrix(DisperseMatrix &matriz1){
+DisperseMatrix::DisperseMatrix(DisperseMatrix &matriz1)
+{
     matriz = matriz1.matriz;
     nFilas = matriz1.nFilas;
     nColumnas = matriz1.nColumnas;
@@ -91,7 +94,7 @@ void DisperseMatrix::add(DisperseMatrix &matriz2)
 {
     // Podría ir fila por fila verificando la columna y si esa fila y columna también existe en la matriz2,
     // sumarle eso, sino, sumar 0
-    
+
     for (int fila = 0; fila < nFilas; fila++)
     {
         cout << "Fila " << fila << ": ";
