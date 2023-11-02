@@ -56,13 +56,13 @@ public:
     vector<int> getDisperseColVec(int columna);                 // --J
     void printMatrix(string sep);                               // Imprime la matriz con el separador --ready
     int getMax();                                               // Retorna el mayor elemento de la matriz --J
-    DisperseMatrix getTranspose();                              // Transpone la matriz --S
+    DisperseMatrix getTranspose();                              // Transpone la matriz --ready
     DisperseMatrix addMatrixList(list<DisperseMatrix> &matriz); // --J
 
     /* Sobrecarga operadores */
-    DisperseMatrix operator+(DisperseMatrix &matriz); // Suma entre 2 matrices --S
+    DisperseMatrix operator+(DisperseMatrix &matriz); // Suma entre 2 matrices --ready
     DisperseMatrix operator*(DisperseMatrix &matriz); // Multiplicación entre 2 matrices --J
-    bool operator==(DisperseMatrix &matriz);          // Verifica si 2 matrices son iguales --S
+    bool operator==(DisperseMatrix &matriz);          // Verifica si 2 matrices son iguales --en proceso
 };
 
 #endif
