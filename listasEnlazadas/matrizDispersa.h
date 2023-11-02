@@ -54,7 +54,7 @@ public:
     vector<int> getDisperseRowVec(int fila);                    // Retornar una fila con ceros --J
     list<int> getDisperseColLis(int columna);                   // Retornar columna con ceros --ready
     vector<int> getDisperseColVec(int columna);                 // --J
-    void printMatrix(string sep);                               // Imprime la matriz con el separador --S
+    void printMatrix(string sep);                               // Imprime la matriz con el separador --ready
     int getMax();                                               // Retorna el mayor elemento de la matriz --J
     DisperseMatrix getTranspose();                              // Transpone la matriz --S
     DisperseMatrix addMatrixList(list<DisperseMatrix> &matriz); // --J

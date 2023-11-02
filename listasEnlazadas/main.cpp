@@ -9,6 +9,6 @@ int main()
     {0, 0, 0, 4}
   };
     DisperseMatrix matriz(vec, 4, 4);
-    list<int> lis = matriz.getDisperseColLis(3);
+    matriz.printMatrix("-");
     return 0;
 }

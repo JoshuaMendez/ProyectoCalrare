@@ -218,3 +218,26 @@ list<int>  DisperseMatrix::getDisperseColLis(int columna){
     }
     return result;
 }
+void DisperseMatrix::printMatrix(string sep){
+    for (int i = 0; i < nFilas; i++)
+    {   int contador = 0;
+        list<pair<int , int>>:: iterator it = matriz[i].begin();
+        while(it != matriz[i].end() || contador < nColumnas){
+                if(it->second == contador){
+                    cout << it->first;
+                    it++;
+                }else{
+                    cout << 0  ;
+                }
+                if(contador < nColumnas-1){
+                    cout << sep;
+                }
+                contador++;
+               
+                }
+        if(i < nFilas-1){
+            cout << endl; 
+        }
+
+    }
+}
