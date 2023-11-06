@@ -34,7 +34,7 @@ public:
      ************************/
     /* Constructoras */
     DisperseMatrix();                                             // Vacío --ready
-    DisperseMatrix(int** &matrizA, int m, int n);                 // Arreglo de 2 dimensiones --revisar
+    DisperseMatrix(int **&matrizA, int m, int n);                 // Arreglo de 2 dimensiones --revisar
     DisperseMatrix(const vector<vector<int>> &vec, int m, int n); // Vector de Vectores  --ready
     DisperseMatrix(DisperseMatrix &matriz1);                      // Punto 3 --ready
 
@@ -45,12 +45,21 @@ public:
     void productVector(vector<int> &vec); // Multiplica el objeto actual por el vector --ready
 
     /* Analizadoras */
+<<<<<<< HEAD
     int get(int i, int j);                                      // Obtener valor i, j --ready --not tested
     list<pair<int,int>> getRowLis(int fila);                    // Retornar fila --ready
     vector<int> getRowVec(int fila);                            // Retornar fila --J
     list<pair<int, int>> getColLis(int columna);                           // Retornar columna --ready
     vector<int> getColVec(int columna);                         //  Retornar columna --J
     list<pair<int, int>> getDisperseRowLis(int fila);                      // Retornar fila con ceros --ready
+=======
+    int get(int i, int j);                                      // Obtener valor i, j --ready
+    list<int> getRowLis(int fila);                              // Retornar fila --ready
+    vector<pair<int, int>> getRowVec(int fila);                 // Retornar fila --ready
+    list<int> getColLis(int columna);                           // Retornar columna --ready
+    vector<pair<int, int>> getColVec(int columna);              // Retornar columna --ready
+    list<int> getDisperseRowLis(int fila);                      // Retornar fila con ceros --ready
+>>>>>>> 39b04c8d5887c1bea3064a2a9e73811f20fe9e0b
     vector<int> getDisperseRowVec(int fila);                    // Retornar una fila con ceros --J
     list<pair<int, int>> getDisperseColLis(int columna);                   // Retornar columna con ceros --ready
     vector<int> getDisperseColVec(int columna);                 // --J
