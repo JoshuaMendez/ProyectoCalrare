@@ -27,7 +27,7 @@ DisperseMatrix::DisperseMatrix(int **&matrizA, int m, int n)
     }
 }
 
-DisperseMatrix::DisperseMatrix(const vector<vector<int>> &vec, int m, int n)
+DisperseMatrix::DisperseMatrix(vector<vector<int>> &vec, int m, int n)
 {
     matriz.resize(m);
     for (int i = 0; i < m; i++)
@@ -134,21 +134,24 @@ void DisperseMatrix::add(DisperseMatrix &matriz2)
         cout << endl;
     }
 }
- void DisperseMatrix::productVector(vector<int> &vec){
+void DisperseMatrix::productVector(vector<int> &vec)
+{
     for (int i = 0; i < nColumnas; i++)
     {
         for (int j = 0; j < nFilas; j++)
-        {    list<pair<int,int>>::iterator it = matriz[j].begin();
-            while(it != matriz[j].end())
-            {   
-                if(it->second == i){
+        {
+            list<pair<int, int>>::iterator it = matriz[j].begin();
+            while (it != matriz[j].end())
+            {
+                if (it->second == i)
+                {
                     it->first *= vec[i];
-                   }
-                 it++;
+                }
+                it++;
             }
-        }        
+        }
     }
- }
+}
 
 /* Analizadoras */
 
@@ -170,12 +173,25 @@ int DisperseMatrix::get(int i, int j)
     return ans;
 }
 
-list<pair<int,int>> DisperseMatrix::getRowLis(int fila)
+list<pair<int, int>> DisperseMatrix::getRowList(int fila)
 {
-    return matriz[fila]; //retorna la lista con valor y columna
+    return matriz[fila]; // retorna la lista con valor y columna
 }
 
-list<pair<int, int>> DisperseMatrix::getColLis(int columna)
+vector<pair<int, int>> DisperseMatrix::getRowVec(int fila)
+{
+    list<pair<int, int>>::iterator it;
+    vector<pair<int, int>> ans;
+    for (it = matriz[fila].begin(); it != matriz[fila].end(); it++)
+    {
+        pair<int, int> par;
+        par = make_pair(it->first, it->second);
+        ans.push_back(par);
+    }
+    return ans;
+}
+
+list<pair<int, int>> DisperseMatrix::getColList(int columna)
 {
     list<pair<int, int>> result;
     for (int i = 0; i < nFilas; i++)
@@ -183,10 +199,30 @@ list<pair<int, int>> DisperseMatrix::getColLis(int columna)
         for (list<pair<int, int>>::iterator it = matriz[i].begin(); it != matriz[i].end(); it++)
         {
             if (it->second == columna)
-            {   pair<int,int> par;
+            {
+                pair<int, int> par;
                 par.first = it->first;
                 par.second = i;
-                result.push_back(par);  //guarda valor y fila 
+                result.push_back(par); // guarda valor y fila
+            }
+        }
+    }
+    return result;
+}
+
+vector<pair<int, int>> DisperseMatrix::getColVec(int columna)
+{
+    vector<pair<int, int>> result;
+    for (int i = 0; i < nFilas; i++)
+    {
+        for (list<pair<int, int>>::iterator it = matriz[i].begin(); it != matriz[i].end(); it++)
+        {
+            if (it->second == columna)
+            {
+                pair<int, int> par;
+                par.first = it->first;
+                par.second = i;
+                result.push_back(par); // guarda valor y fila
             }
         }
     }
@@ -198,7 +234,7 @@ list<pair<int, int>> DisperseMatrix::getDisperseRowLis(int fila)
     list<pair<int, int>> result;
     list<pair<int, int>>::iterator it = matriz[fila].begin();
     int i = 0; // contador de columnas
-    pair<int , int> par ;
+    pair<int, int> par;
     while (it != matriz[fila].end() || i < nColumnas)
     {
         if (it->second == i)
@@ -210,8 +246,8 @@ list<pair<int, int>> DisperseMatrix::getDisperseRowLis(int fila)
         }
         else
         {
-             par.first = 0;
-             par.second = i;
+            par.first = 0;
+            par.second = i;
             result.push_back(par);
         }
         i++;
@@ -220,17 +256,46 @@ list<pair<int, int>> DisperseMatrix::getDisperseRowLis(int fila)
     return result;
 }
 
-list<pair<int, int>> DisperseMatrix::getDisperseColLis(int columna)
+vector<pair<int, int>> DisperseMatrix::getDisperseRowVec(int fila)
+{
+    vector<pair<int, int>> result;
+    list<pair<int, int>>::iterator it = matriz[fila].begin();
+    int i = 0; // contador de columnas
+    pair<int, int> par;
+    while (it != matriz[fila].end() || i < nColumnas)
+    {
+        if (it->second == i)
+        {
+            par.first = it->first;
+            par.second = i;
+            result.push_back(par);
+            it++;
+        }
+        else
+        {
+            par.first = 0;
+            par.second = i;
+            result.push_back(par);
+        }
+        i++;
+    }
+
+    return result;
+}
+
+list<pair<int, int>> DisperseMatrix::getDisperseColList(int columna)
 {
     list<pair<int, int>> result;
     for (int i = 0; i < nFilas; i++)
-    {   pair<int,int> par;
+    {
+        pair<int, int> par;
         bool flag = false;
         list<pair<int, int>>::iterator it = matriz[i].begin();
         while (it != matriz[i].end())
         {
             if (it->second == columna)
-            {   par.first = it->first;
+            {
+                par.first = it->first;
                 par.second = i;
                 result.push_back(par);
                 flag = true;
@@ -238,13 +303,44 @@ list<pair<int, int>> DisperseMatrix::getDisperseColLis(int columna)
             it++;
         }
         if (!flag)
-        {   par.first = 0;
+        {
+            par.first = 0;
             par.second = i;
             result.push_back(par);
         }
     }
-    return result; // retorna el valor y la fila 
+    return result; // retorna el valor y la fila
 }
+
+vector<pair<int, int>> DisperseMatrix::getDisperseColVec(int columna)
+{
+    vector<pair<int, int>> result;
+    for (int i = 0; i < nFilas; i++)
+    {
+        pair<int, int> par;
+        bool flag = false;
+        list<pair<int, int>>::iterator it = matriz[i].begin();
+        while (it != matriz[i].end())
+        {
+            if (it->second == columna)
+            {
+                par.first = it->first;
+                par.second = i;
+                result.push_back(par);
+                flag = true;
+            }
+            it++;
+        }
+        if (!flag)
+        {
+            par.first = 0;
+            par.second = i;
+            result.push_back(par);
+        }
+    }
+    return result; // retorna el valor y la fila
+}
+
 void DisperseMatrix::printMatrix(string sep)
 {
     for (int i = 0; i < nFilas; i++)
@@ -275,6 +371,23 @@ void DisperseMatrix::printMatrix(string sep)
     }
 }
 
+int DisperseMatrix::getMax()
+{
+    int maxValue = -2147483647;
+    list<pair<int, int>>::iterator it;
+    for (int i = 0; i < nFilas; i++)
+    {
+        for (it = matriz[i].begin(); it != matriz[i].end(); it++)
+        {
+            if (it->first > maxValue)
+            {
+                maxValue = it->first;
+            }
+        }
+    }
+    return maxValue;
+}
+
 DisperseMatrix DisperseMatrix::getTranspose()
 {
     DisperseMatrix result;
@@ -299,6 +412,19 @@ DisperseMatrix DisperseMatrix::getTranspose()
     }
     return result;
 }
+
+DisperseMatrix DisperseMatrix::addMatrixList(list<DisperseMatrix> &listaMatriz)
+{
+    DisperseMatrix ans;
+    list<DisperseMatrix>::iterator it;
+    for (it = listaMatriz.begin(); it != listaMatriz.end(); it++)
+    {
+        ans = ans + *it;
+    }
+
+    return ans;
+}
+
 /* Sobrecarga operadores */
 bool comparador(pair<int, int> &a, pair<int, int> &b)
 {
@@ -378,29 +504,38 @@ DisperseMatrix DisperseMatrix::operator+(DisperseMatrix &sum)
 bool DisperseMatrix::operator==(DisperseMatrix &matriz1)
 {
     bool ans = false;
-    if (nFilas == matriz1.nFilas && nColumnas == matriz1.nColumnas) {
-         bool flag = true;
-        for (int i = 0; i < nFilas && flag; i++){
-            list<pair<int,int>>::iterator it = matriz[i].begin();
-             list<pair<int,int>>::iterator it1 = matriz1.matriz[i].begin() ;
-            while(it != matriz[i].end() || it1 != matriz1.matriz[i].end()){
-                   if(it != matriz[i].end()  && it1 != matriz1.matriz[i].end()){
+    if (nFilas == matriz1.nFilas && nColumnas == matriz1.nColumnas)
+    {
+        bool flag = true;
+        for (int i = 0; i < nFilas && flag; i++)
+        {
+            list<pair<int, int>>::iterator it = matriz[i].begin();
+            list<pair<int, int>>::iterator it1 = matriz1.matriz[i].begin();
+            while (it != matriz[i].end() || it1 != matriz1.matriz[i].end())
+            {
+                if (it != matriz[i].end() && it1 != matriz1.matriz[i].end())
+                {
                     ans = it->first == it1->first && it->second == it1->second;
                     it++;
                     it1++;
-                }else{
-                    cout <<"entro"<< endl;
+                }
+                else
+                {
+                    cout << "entro" << endl;
                     flag = false;
-                    if(it != matriz[i].end()){
+                    if (it != matriz[i].end())
+                    {
                         it++;
-                        ans=false;
-                    }else{
+                        ans = false;
+                    }
+                    else
+                    {
                         it1++;
-                        ans=false;
+                        ans = false;
                     }
                 }
-            }   
-        }   
+            }
+        }
     }
     return ans;
 }
