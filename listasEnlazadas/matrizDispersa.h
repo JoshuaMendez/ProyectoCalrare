@@ -42,17 +42,17 @@ public:
     vector<vector<int>> rebuild();        // Reconstruir la matriz dispersa a normal con ceros y la retonar --ready
     void assign(int i, int j, int v);     // Modificar el valor en la posición i, j --ready
     void add(DisperseMatrix &matriz2);    // Suma entre matrices --J
-    void productVector(vector<int> &vec); // Multiplica el objeto actual por el vector --S
+    void productVector(vector<int> &vec); // Multiplica el objeto actual por el vector --ready
 
     /* Analizadoras */
     int get(int i, int j);                                      // Obtener valor i, j --ready --not tested
-    list<int> getRowLis(int fila);                              // Retornar fila --ready
+    list<pair<int,int>> getRowLis(int fila);                    // Retornar fila --ready
     vector<int> getRowVec(int fila);                            // Retornar fila --J
-    list<int> getColLis(int columna);                           // Retornar columna --ready
+    list<pair<int, int>> getColLis(int columna);                           // Retornar columna --ready
     vector<int> getColVec(int columna);                         //  Retornar columna --J
-    list<int> getDisperseRowLis(int fila);                      // Retornar fila con ceros --ready
+    list<pair<int, int>> getDisperseRowLis(int fila);                      // Retornar fila con ceros --ready
     vector<int> getDisperseRowVec(int fila);                    // Retornar una fila con ceros --J
-    list<int> getDisperseColLis(int columna);                   // Retornar columna con ceros --ready
+    list<pair<int, int>> getDisperseColLis(int columna);                   // Retornar columna con ceros --ready
     vector<int> getDisperseColVec(int columna);                 // --J
     void printMatrix(string sep);                               // Imprime la matriz con el separador --ready
     int getMax();                                               // Retorna el mayor elemento de la matriz --J
@@ -62,7 +62,7 @@ public:
     /* Sobrecarga operadores */
     DisperseMatrix operator+(DisperseMatrix &matriz); // Suma entre 2 matrices --ready
     DisperseMatrix operator*(DisperseMatrix &matriz); // Multiplicación entre 2 matrices --J
-    bool operator==(DisperseMatrix &matriz);          // Verifica si 2 matrices son iguales --en proceso
+    bool operator==(DisperseMatrix &matriz);          // Verifica si 2 matrices son iguales --ready
 };
 
 #endif
