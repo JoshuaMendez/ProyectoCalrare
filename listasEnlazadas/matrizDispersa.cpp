@@ -501,6 +501,49 @@ DisperseMatrix DisperseMatrix::operator+(DisperseMatrix &sum)
     return result;
 }
 
+DisperseMatrix DisperseMatrix::operator*(DisperseMatrix &matrix2)
+{
+    DisperseMatrix result;
+    int n, product;
+    pair<int, int> valCol;
+    if (nColumnas >= matrix2.nFilas)
+    {
+        n = nColumnas;
+    }
+    else
+    {
+        n = matrix2.nFilas;
+    }
+    result.nFilas = nFilas;
+    result.nColumnas = matrix2.nColumnas;
+
+    for (int fila1 = 0; fila1 < nFilas; fila1++)
+    {
+        cout << fila1 << endl;
+        for (int col2 = 0; col2 < matrix2.nColumnas; col2++)
+        {
+            cout << col2 << endl;
+            product = 0;
+            for (int i = 0; i < n; i++)
+            {
+                cout << i << endl;
+                product += get(fila1, i) * matrix2.get(i, col2);
+                cout << product << endl;
+
+                if (product != 0)
+                {
+                    valCol = make_pair(product, col2);
+                    cout << valCol.first << " " << valCol.second << endl;
+                    result.matriz[fila1].push_back(valCol); // ------------ Error
+                }
+            }
+        }
+    }
+
+    result.printMatrix("|");
+    return result;
+}
+
 bool DisperseMatrix::operator==(DisperseMatrix &matriz1)
 {
     bool ans = false;
