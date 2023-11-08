@@ -23,12 +23,12 @@ using namespace std;
 
 class DisperseMatrix
 {
-    // private:
-public:
+    private:
+// public:
     vector<list<pair<int, int>>> matriz;
     int nFilas; // Equivalente a tamaño del vector
     int nColumnas;
-    // public:
+    public:
     /************************
      * OPERACIONES DEL TAD *
      ************************/

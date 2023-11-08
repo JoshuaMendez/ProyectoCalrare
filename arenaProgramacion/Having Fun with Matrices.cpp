@@ -35,7 +35,16 @@ int main()
             {
                 int a, b;
                 cin >> a >> b;
-                vector<pair<int, int>> rowA;
+                vector<pair<int, int>> rowA, rowB;
+                // rowA = matrizDispersa.getRowVec(a);
+                // for (int i = 0; i < rowA.size(); i++)
+                // {
+                //     cout << rowA[i].first << " ";
+                // }
+                // cout << endl;
+                // rowB = matrizDispersa.getRowVec(b);
+                // matrizDispersa.getRowVec(a) = rowB;
+                // matrizDispersa.getRowVec(b) = rowA;
                 // cambio la fila a por la b CONTANDO DESDE 1
 
             }
