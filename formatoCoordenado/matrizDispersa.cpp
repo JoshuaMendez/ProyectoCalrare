@@ -462,9 +462,7 @@ DisperseMatrix DisperseMatrix::operator+(DisperseMatrix &matrix2)
             }    
         }
             
-    }
-      
-    result.printMatrix("|");
+     }
     return result;
 }
 

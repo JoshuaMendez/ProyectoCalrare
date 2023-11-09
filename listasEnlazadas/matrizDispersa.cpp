@@ -431,7 +431,7 @@ bool comparador(pair<int, int> &a, pair<int, int> &b)
     return a.second < b.second;
 }
 DisperseMatrix DisperseMatrix::operator+(DisperseMatrix &sum)
-{
+{   
     DisperseMatrix result;
     result.nFilas = max(nFilas, sum.nFilas);
     result.nColumnas = max(nColumnas, sum.nColumnas);
@@ -447,23 +447,27 @@ DisperseMatrix DisperseMatrix::operator+(DisperseMatrix &sum)
             for (list<pair<int, int>>::iterator it = matriz[i].begin(); it != matriz[i].end(); it++)
             {
                 bool sumado = false;
-                for (list<pair<int, int>>::iterator it1 = sum.matriz[i].begin(); it1 != sum.matriz[i].end(); it1++)
+                 if (i < sum.nFilas)
                 {
-                    if (it->second == it1->second)
+                    for (list<pair<int, int>>::iterator it1 = sum.matriz[i].begin(); it1 != sum.matriz[i].end(); it1++)
                     {
+                        if (it->second == it1->second)
+                        {
                         valor = it->first + it1->first;
                         par.first = valor;
                         par.second = it->second;
                         result.matriz[i].push_back(par);
                         sumado = true;
+                        }
                     }
-                }
+                }    
                 if (!sumado)
                 {
                     par.first = it->first;
                     par.second = it->second;
                     result.matriz[i].push_back(par);
                 }
+                
             }
         }
         if (i < sum.nFilas)
@@ -498,6 +502,7 @@ DisperseMatrix DisperseMatrix::operator+(DisperseMatrix &sum)
 
         i++;
     }
+    result.printMatrix("|");
     return result;
 }
 

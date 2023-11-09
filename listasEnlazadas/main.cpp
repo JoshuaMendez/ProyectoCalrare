@@ -58,13 +58,14 @@ int main()
 
   DisperseMatrix matriz1(vec1, 8, 7);
   DisperseMatrix matriz2(vec2, 8, 7);
-  DisperseMatrix matriz3(vec3, 8, 7);
+    DisperseMatrix matriz3(vec3, 8, 7);
   DisperseMatrix matriz4(vec4, 8, 7);
-  DisperseMatrix matriz5(vec5, 8, 7);
+ DisperseMatrix matriz5(vec5, 8, 7);
   DisperseMatrix matriz6(vec6, 5, 5);
 
-  list<DisperseMatrix> l;
-  l.push_back(matriz1);
+
+ 
+ /* l.push_back(matriz1);
   l.push_back(matriz2);
   l.push_back(matriz3);
   l.push_back(matriz4);
@@ -75,7 +76,7 @@ int main()
   a = a.addMatrixList(l);
   cout << "matriz a" << endl;
   a.printMatrix(",");
-
+    */
   // Resultado
   // 23 12 55 17 69 25 29
   // 20 39 32 18 33 36 14
