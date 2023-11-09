@@ -74,11 +74,19 @@ int main()
             }
             else if (tr == "inc")
             {
-                
+                DisperseMatrix sum;
+                for (int i = 0; i < sizeMat; i++)
+                {
+                    for (int j = 0; j < sizeMat; j++)
+                    {
+                        sum.assign(i, j, 1);
+                    }
+                }
+                matrizDispersa.add(sum);
+                matrizDispersa.printMatrix(", ");
             }
             else if (tr == "dec")
             {
-
             }
             else if (tr == "transpose")
             {
