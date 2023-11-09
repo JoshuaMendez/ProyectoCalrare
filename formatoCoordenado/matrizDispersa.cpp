@@ -162,7 +162,6 @@ int DisperseMatrix::get(int i, int j)
         {
             ans = 0;
         }
-
     }
     else
     {
@@ -185,10 +184,10 @@ list<int> DisperseMatrix::getRowLis(int fila)
     return result;
 }
 
-vector<pair<int,int>> DisperseMatrix::getRowVec(int fila)
+vector<pair<int, int>> DisperseMatrix::getRowVec(int fila)
 {
-    vector<pair<int,int>> result;
-    pair<int,int> par;
+    vector<pair<int, int>> result;
+    pair<int, int> par;
     int i;
     for (i = 0; i < valores.size(); i++) // agrega en la posicion respectiva el valor diferente a 0
     {
@@ -217,15 +216,15 @@ list<int> DisperseMatrix::getColLis(int columna)
     return result;
 }
 
-vector<pair<int,int>> DisperseMatrix::getColVec(int columna)
+vector<pair<int, int>> DisperseMatrix::getColVec(int columna)
 {
-    vector<pair<int,int>> result;
-    pair<int,int> par;
+    vector<pair<int, int>> result;
+    pair<int, int> par;
     int i;
     for (i = 0; i < valores.size(); i++) // agrega en la posicion respectiva el valor diferente a 0
     {
         if (columnas[i] == columna)
-        {   
+        {
             par.first = valores[i];
             par.second = filas[i];
             result.push_back(par);
@@ -234,16 +233,16 @@ vector<pair<int,int>> DisperseMatrix::getColVec(int columna)
     return result;
 }
 
-vector<pair<int,int>> DisperseMatrix::getDisperseRowVec(int fila)
+vector<pair<int, int>> DisperseMatrix::getDisperseRowVec(int fila)
 {
-    vector<pair<int,int>> result;
-    pair<int,int> par;
+    vector<pair<int, int>> result;
+    pair<int, int> par;
     for (int i = 0; i < nColumnas; i++)
     {
         par.first = 0;
         par.second = i;
     }
-    
+
     for (int i = 0; i < valores.size(); i++) // agrega en la posicion respectiva el valor diferente a 0
     {
         if (fila == filas[i])
@@ -292,16 +291,16 @@ list<int> DisperseMatrix::getDisperseColLis(int columna)
     return result;
 }
 
-vector<pair<int,int>> DisperseMatrix::getDisperseColVec(int columna)
+vector<pair<int, int>> DisperseMatrix::getDisperseColVec(int columna)
 {
-    vector<pair<int,int>> result;
-    pair<int,int> par;
+    vector<pair<int, int>> result;
+    pair<int, int> par;
     for (int i = 0; i < nFilas; i++)
     {
         par.first = 0;
         par.first = i;
     }
-    
+
     for (int i = 0; i < valores.size(); i++) // agrega en la posicion respectiva el valor diferente a 0
     {
         if (columnas[i] == columna)
@@ -434,35 +433,45 @@ DisperseMatrix DisperseMatrix::operator+(DisperseMatrix &matrix2)
     return result;
 }
 
- DisperseMatrix DisperseMatrix::operator*(DisperseMatrix &matrix2)
- {
-     DisperseMatrix result;
-     int n , product ;
-     if (nColumnas >= matrix2.nFilas)
-     {
+DisperseMatrix DisperseMatrix::operator*(DisperseMatrix &matrix2)
+{
+    DisperseMatrix result;
+    int n, product;
+    if (nColumnas >= matrix2.nFilas)
+    {
         n = nColumnas;
-     }else {
+    }
+    else
+    {
         n = matrix2.nFilas;
-     }
-     result.nFilas = nFilas;
-     result.nColumnas = matrix2.nColumnas;
-     for (int fila1 = 0; fila1 < nFilas; fila1++)
-     {
-        for(int col2 = 0 ; col2 < matrix2.nColumnas; col2++)
-        {    product = 0;
-             for (int i = 0; i < n; i++)
-            {   
-                    product += get(fila1,i)*matrix2.get(i,col2) ;
-                
-                if(product != 0){
+    }
+    result.nFilas = nFilas;
+    result.nColumnas = matrix2.nColumnas;
+    for (int fila1 = 0; fila1 < nFilas; fila1++)
+    {
+        for (int col2 = 0; col2 < matrix2.nColumnas; col2++)
+        {
+            product = 0;
+            for (int i = 0; i < n; i++)
+            {
+                product += get(fila1, i) * matrix2.get(i, col2);
+
+                if (product != 0)
+                {
                     result.valores.push_back(product);
                     result.filas.push_back(fila1);
                     result.columnas.push_back(col2);
                 }
-            }    
+            }
         }
+<<<<<<< HEAD
             
      }
+=======
+    }
+
+    result.printMatrix("|");
+>>>>>>> ac9f986032890cb88e94439a2ff044edb1cb7d97
     return result;
 }
 
