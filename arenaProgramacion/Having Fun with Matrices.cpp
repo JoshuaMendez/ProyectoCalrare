@@ -31,35 +31,29 @@ int main()
         {
             string tr;
             cin >> tr;
+
             if (tr == "row")
             {
                 int a, b;
                 cin >> a >> b;
+
                 vector<pair<int, int>> rowA, rowB;
-                // rowA = matrizDispersa.getRowVec(a);
-                // for (int i = 0; i < rowA.size(); i++)
-                // {
-                //     cout << rowA[i].first << " ";
-                // }
-                // cout << endl;
-                // rowB = matrizDispersa.getRowVec(b);
-                // matrizDispersa.getRowVec(a) = rowB;
-                // matrizDispersa.getRowVec(b) = rowA;
-                // cambio la fila a por la b CONTANDO DESDE 1
+                rowA = matrizDispersa.getDisperseRowVec(a - 1);
+                
+                rowB = matrizDispersa.getDisperseRowVec(b - 1);
 
+                for (int i = 0; i < rowB.size(); i++)
+                {
+                    matrizDispersa.assign(a - 1, i, rowB[i].first);
+                }
+
+                for (int i = 0; i < rowA.size(); i++)
+                {
+                    matrizDispersa.assign(b - 1, i, rowA[i].first);
+                }
+
+                matrizDispersa.printMatrix("");
             }
-        }
-
-
-
-        cout << "mat" << endl;
-        for (int i = 0; i < sizeMat; i++)
-        {
-            for (int j = 0; j < sizeMat; j++)
-            {
-                cout << mat[i][j] << " ";
-            }
-            cout << endl;
         }
         iteration++;
     }
