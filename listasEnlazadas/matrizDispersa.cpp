@@ -8,7 +8,7 @@ DisperseMatrix::DisperseMatrix()
     nFilas = 0;
     nColumnas = 0;
 }
-DisperseMatrix::DisperseMatrix(int **&matrizA, int m, int n)
+DisperseMatrix::DisperseMatrix(int **matrizA, int m, int n)
 {
     nFilas = m;
     nColumnas = n;
@@ -47,7 +47,7 @@ DisperseMatrix::DisperseMatrix(vector<vector<int>> &vec, int m, int n)
     nColumnas = n;
 }
 
-DisperseMatrix::DisperseMatrix(DisperseMatrix &matriz1)
+DisperseMatrix::DisperseMatrix(const DisperseMatrix &matriz1)
 {
     matriz = matriz1.matriz;
     nFilas = matriz1.nFilas;
@@ -157,7 +157,7 @@ void DisperseMatrix::productVector(vector<int> &vec)
 
 int DisperseMatrix::get(int i, int j)
 {
-    int ans;
+    int ans = 0;
     bool flag = true;
     list<pair<int, int>>::iterator it;
 
@@ -421,6 +421,7 @@ DisperseMatrix DisperseMatrix::addMatrixList(list<DisperseMatrix> &listaMatriz)
     {
         ans = ans + *it;
     }
+    ans.printMatrix(",");
 
     return ans;
 }
@@ -516,30 +517,25 @@ DisperseMatrix DisperseMatrix::operator*(DisperseMatrix &matrix2)
     }
     result.nFilas = nFilas;
     result.nColumnas = matrix2.nColumnas;
+    result.matriz.resize(result.nFilas);
 
     for (int fila1 = 0; fila1 < nFilas; fila1++)
     {
-        cout << fila1 << endl;
         for (int col2 = 0; col2 < matrix2.nColumnas; col2++)
         {
-            cout << col2 << endl;
             product = 0;
             for (int i = 0; i < n; i++)
-            {
-                cout << i << endl;
-                product += get(fila1, i) * matrix2.get(i, col2);
-                cout << product << endl;
-
+            {   
+                product = (get(fila1, i) + matrix2.get(i, col2));
                 if (product != 0)
                 {
                     valCol = make_pair(product, col2);
-                    cout << valCol.first << " " << valCol.second << endl;
-                    result.matriz[fila1].push_back(valCol); // ------------ Error
+                    result.matriz[fila1].push_back(valCol);
                 }
             }
+            cout << product << endl;
         }
     }
-
     result.printMatrix("|");
     return result;
 }
