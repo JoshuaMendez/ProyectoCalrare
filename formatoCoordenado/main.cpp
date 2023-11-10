@@ -15,7 +15,7 @@ int main()
     DisperseMatrix matriz_2(matriz2);
 
     list<pair<int, int>> lista;
-    lista = matriz_2.getDisperseRowLis(0);
+    lista = matriz_2.getDisperseColLis(1);
 
     for (pair<int, int> it : lista)
     {

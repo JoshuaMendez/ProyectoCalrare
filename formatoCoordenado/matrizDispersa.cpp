@@ -275,14 +275,14 @@ list<pair<int, int>> DisperseMatrix::getDisperseRowLis(int fila)
     int i = 0;
     while (i < valores.size() || it != result.end())
     {
-        if (filas[i] == fila && columnas[i] == it->second)
-        {
-            it->first = valores[i];
-            it++;
-        }
         if (i == valores.size())
         {
             i = 0;
+            it++;
+        }
+        if (filas[i] == fila && columnas[i] == it->second)
+        {
+            it->first = valores[i];
             it++;
         }
         i++;
@@ -295,19 +295,31 @@ list<pair<int, int>> DisperseMatrix::getDisperseRowLis(int fila)
 list<pair<int, int>> DisperseMatrix::getDisperseColLis(int columna) // Retorna una lista de pares de enteros con los valores de columna y la fila correspondiente con sus 0
 {
     list<pair<int, int>> result;
-    list<pair<int, int>>::iterator it = result.begin();
-
-    for (int i = 0; i < valores.size(); i++) // agrega en la posicion respectiva el valor diferente a 0
+    pair<int, int> par;
+    for (int i = 0; i < nFilas; i++)
     {
-        it = result.begin();
-        if (columnas[i] == columna)
-        {
-            // *it = *it + filas[i];
-            advance(it, filas[i]);
-            // result.insert(it, valores[i]);
-            result.erase(it);
-        }
+        par = make_pair(0, i);
+        result.push_back(par);
     }
+
+    list<pair<int, int>>::iterator it = result.begin();
+    int i = 0;
+    while (i < valores.size() && it != result.end())
+    {
+        cout << "it " << it->second << endl;
+        if (i == valores.size())
+        {
+            i = 0;
+            it++;
+        }
+        if (columnas[i] == columna && filas[i] == it->second)
+        {
+            it->first = valores[i];
+            it++;
+        }
+        i++;
+    }
+
     return result;
 }
 // siendo n = el valor maximo entre nFilas y el tamaño del vector de valores
