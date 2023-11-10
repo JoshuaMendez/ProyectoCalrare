@@ -206,7 +206,7 @@ vector<pair<int, int>> DisperseMatrix::getRowVec(int fila) // Retorna un vector 
     return result;
 }
 
-list<pair<int, int>> DisperseMatrix::getColLis(int columna)
+list<pair<int, int>> DisperseMatrix::getColList(int columna)
 {
     list<pair<int, int>> result;
     int i;
@@ -261,7 +261,7 @@ vector<pair<int, int>> DisperseMatrix::getDisperseRowVec(int fila) // Retorna un
     return result;
 }
 
-list<pair<int, int>> DisperseMatrix::getDisperseRowLis(int fila)
+list<pair<int, int>> DisperseMatrix::getDisperseRowList(int fila)
 {
     list<pair<int, int>> result;
     pair<int, int> par;
@@ -292,7 +292,7 @@ list<pair<int, int>> DisperseMatrix::getDisperseRowLis(int fila)
 }
 // siendo n = el valor maximo entre nColumnas y el tamaño del vector de valores
 // Complejidad O(n)
-list<pair<int, int>> DisperseMatrix::getDisperseColLis(int columna) // Retorna una lista de pares de enteros con los valores de columna y la fila correspondiente con sus 0
+list<pair<int, int>> DisperseMatrix::getDisperseColList(int columna) // Retorna una lista de pares de enteros con los valores de columna y la fila correspondiente con sus 0
 {
     list<pair<int, int>> result;
     pair<int, int> par;
