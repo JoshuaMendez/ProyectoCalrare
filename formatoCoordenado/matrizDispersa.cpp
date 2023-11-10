@@ -170,15 +170,17 @@ int DisperseMatrix::get(int i, int j)
     return ans;
 }
 
-list<int> DisperseMatrix::getRowLis(int fila)
+list<pair<int, int>> DisperseMatrix::getRowLis(int fila)
 {
-    list<int> result;
+    list<pair<int, int>> result;
     int i;
     for (i = 0; i < valores.size(); i++) // agrega en la posicion respectiva el valor diferente a 0
     {
         if (fila == filas[i])
         {
-            result.push_back(valores[i]);
+            pair<int, int> par;
+            par = make_pair(valores[i], i);
+            result.push_back(par);
         }
     }
     return result;
@@ -201,16 +203,18 @@ vector<pair<int, int>> DisperseMatrix::getRowVec(int fila)
     return result;
 }
 
-list<int> DisperseMatrix::getColLis(int columna)
+list<pair<int, int>> DisperseMatrix::getColLis(int columna)
 {
-    list<int> result;
+    list<pair<int, int>> result;
     int i;
 
     for (i = 0; i < valores.size(); i++) // agrega en la posicion respectiva el valor diferente a 0
     {
         if (columnas[i] == columna)
         {
-            result.push_back(valores[i]);
+            pair<int, int> par;
+            par = make_pair(valores[i], i);
+            result.push_back(par);
         }
     }
     return result;
@@ -253,43 +257,54 @@ vector<pair<int, int>> DisperseMatrix::getDisperseRowVec(int fila)
     return result;
 }
 
-list<int> DisperseMatrix::getDisperseRowLis(int fila)
+list<pair<int, int>> DisperseMatrix::getDisperseRowLis(int fila)
 {
-    list<int> result(nColumnas, 0);
-    list<int>::iterator it = result.begin();
-
-    for (int i = 0; i < valores.size(); i++) // agrega en la posicion respectiva el valor diferente a 0
+    list<pair<int, int>> result;
+    pair<int, int> par;
+    for (int i = 0; i < nColumnas; i++)
     {
-        it = result.begin();
-        if (fila == filas[i])
-        {
-            // *it = *it + columnas[i];
-            advance(it, columnas[i]);
-            result.insert(it, valores[i]);
-            result.erase(it);
-        }
+        par = make_pair(0, i);
+        result.push_back(par);
     }
+
+    list<pair<int, int>>::iterator it = result.begin();
+    int i = 0;
+    while (i < valores.size() || it != result.end())
+    {
+        if (filas[i] == fila && columnas[i] == it->second)
+        {
+            it->first = valores[i];
+            it++;
+        }
+        if (i == valores.size())
+        {
+            i = 0;
+            it++;
+        }
+        i++;
+    }
+
     return result;
 }
 
-list<int> DisperseMatrix::getDisperseColLis(int columna)
-{
-    list<int> result(nFilas, 0);
-    list<int>::iterator it = result.begin();
+// list<int> DisperseMatrix::getDisperseColLis(int columna)
+// {
+//     list<int> result(nFilas, 0);
+//     list<int>::iterator it = result.begin();
 
-    for (int i = 0; i < valores.size(); i++) // agrega en la posicion respectiva el valor diferente a 0
-    {
-        it = result.begin();
-        if (columnas[i] == columna)
-        {
-            // *it = *it + filas[i];
-            advance(it, filas[i]);
-            result.insert(it, valores[i]);
-            result.erase(it);
-        }
-    }
-    return result;
-}
+//     for (int i = 0; i < valores.size(); i++) // agrega en la posicion respectiva el valor diferente a 0
+//     {
+//         it = result.begin();
+//         if (columnas[i] == columna)
+//         {
+//             // *it = *it + filas[i];
+//             advance(it, filas[i]);
+//             result.insert(it, valores[i]);
+//             result.erase(it);
+//         }
+//     }
+//     return result;
+// }
 
 vector<pair<int, int>> DisperseMatrix::getDisperseColVec(int columna)
 {
@@ -464,14 +479,8 @@ DisperseMatrix DisperseMatrix::operator*(DisperseMatrix &matrix2)
                 }
             }
         }
-<<<<<<< HEAD
-            
-     }
-=======
     }
 
-    result.printMatrix("|");
->>>>>>> ac9f986032890cb88e94439a2ff044edb1cb7d97
     return result;
 }
 

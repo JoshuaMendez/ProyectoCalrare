@@ -7,14 +7,21 @@ int main()
 
     DisperseMatrix matriz_1(matriz1, 2, 4);
 
-    vector<vector<int>> matriz2 = {{1, 4, 0},
+    vector<vector<int>> matriz2 = {{0, 4, 0},
                                    {-5, 3, 7},
                                    {0, -9, 5},
-                                   {5, 1, 4}};
+                                   {5, 0, 4}};
 
     DisperseMatrix matriz_2(matriz2, 4, 3);
 
-    matriz_1 * matriz_2;
+    list<pair<int, int>> lista;
+    lista = matriz_2.getDisperseRowLis(0);
+
+    for (pair<int, int> it : lista)
+    {
+        cout << it.first << " " << it.second << endl;
+    }
+    cout << endl;
 
     return 0;
 }

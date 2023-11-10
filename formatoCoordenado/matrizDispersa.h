@@ -48,13 +48,13 @@ public:
 
     /* Analizadoras */
     int get(int i, int j);                                      // Obtener valor i, j --ready
-    list<int> getRowLis(int fila);                              // Retornar fila --ready
+    list<pair<int,int>> getRowLis(int fila);                              // Retornar fila --ready
     vector<pair<int,int>> getRowVec(int fila);                            // Retornar fila --ready
-    list<int> getColLis(int columna);                           // Retornar columna --ready
+    list<pair<int,int>> getColLis(int columna);                           // Retornar columna --ready
     vector<pair<int,int>> getColVec(int columna);                         //  Retornar columna --ready
-    list<int> getDisperseRowLis(int fila);                      // Retornar fila con ceros --ready
+    list<pair<int,int>> getDisperseRowLis(int fila);                      // Retornar fila con ceros --ready
     vector<pair<int,int>> getDisperseRowVec(int fila);                    // Retornar una fila con ceros --ready
-    list<int> getDisperseColLis(int columna);                   // Retornar columna con ceros --ready
+    list<pair<int,int>> getDisperseColLis(int columna);                   // Retornar columna con ceros --ready
     vector<pair<int,int>> getDisperseColVec(int columna);                 // --ready
     void printMatrix(string sep);                               // Imprime la matriz con el separador --ready
     int getMax();                                               // Retorna el mayor elemento de la matriz --ready
