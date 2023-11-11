@@ -1,9 +1,5 @@
 /*
  * Autores: Sebastian Izquierdo S. y Joshua Mendez
- * Fecha de creación: 12 de Octubre
- * Fecha última modificación: 19 de Octubre
- * Versión: 1.0
- *
  * Archivo encabezado libreria TAD matriz Dispersa
  * Representación Estructuras Matriz Dispersa de la forma de coordenadas con vectores
  */
@@ -48,18 +44,18 @@ public:
 
     /* Analizadoras */
     int get(int, int);                                    // Obtener valor i, j
-    list<pair<int, int>> getRowLis(int);                  // Retornar fila
+    list<pair<int, int>> getRowList(int);                 // Retornar fila
     vector<pair<int, int>> getRowVec(int);                // Retornar fila
-    list<pair<int, int>> getColList(int);                  // Retornar columna
-    vector<pair<int, int>> getColVec(int);                //  Retornar columna
-    list<pair<int, int>> getDisperseRowList(int);          // Retornar fila con ceros
+    list<pair<int, int>> getColList(int);                 // Retornar columna
+    vector<pair<int, int>> getColVec(int);                // Retornar columna
+    list<pair<int, int>> getDisperseRowList(int);         // Retornar fila con ceros
     vector<pair<int, int>> getDisperseRowVec(int);        // Retornar una fila con ceros
-    list<pair<int, int>> getDisperseColList(int);          // Retornar columna con ceros
+    list<pair<int, int>> getDisperseColList(int);         // Retornar columna con ceros
     vector<pair<int, int>> getDisperseColVec(int);        // Retornar columna con ceros
     void printMatrix(string);                             // Imprime la matriz con el separador
     int getMax();                                         // Retorna el mayor elemento de la matriz
     DisperseMatrix getTranspose();                        // Transpone la matriz
-    DisperseMatrix addMatrixList(list<DisperseMatrix> &); // suma todas las matrices dispersas de la lista
+    DisperseMatrix addMatrixList(list<DisperseMatrix> &); // Suma todas las matrices dispersas de una lista
 
     /* Sobrecarga operadores */
     DisperseMatrix operator+(DisperseMatrix &); // Suma entre 2 matrices

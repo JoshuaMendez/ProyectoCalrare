@@ -23,7 +23,7 @@ int main()
             mat.push_back(newLine);
         }
 
-        DisperseMatrix matrizDispersa(mat, sizeMat, sizeMat);
+        DisperseMatrix matrizDispersa(mat);
 
         int trCases;
         cin >> trCases;
@@ -36,7 +36,6 @@ int main()
             {
                 int a, b;
                 cin >> a >> b;
-
                 vector<pair<int, int>> rowA, rowB;
                 rowA = matrizDispersa.getDisperseRowVec(a - 1);
                 rowB = matrizDispersa.getDisperseRowVec(b - 1);
@@ -50,8 +49,6 @@ int main()
                 {
                     matrizDispersa.assign(b - 1, i, rowA[i].first);
                 }
-
-                // matrizDispersa.printMatrix("");
             }
             else if (tr == "col")
             {
@@ -70,30 +67,55 @@ int main()
                 {
                     matrizDispersa.assign(i, b - 1, colA[i].first);
                 }
-                // matrizDispersa.printMatrix("");
             }
             else if (tr == "inc")
             {
-                DisperseMatrix sum;
                 for (int i = 0; i < sizeMat; i++)
                 {
                     for (int j = 0; j < sizeMat; j++)
                     {
-                        sum.assign(i, j, 1);
+                        if (matrizDispersa.get(i, j) == 0)
+                        {
+                            matrizDispersa.assign(i, j, 1);
+                        }
+                        else
+                        {
+                            int valor = matrizDispersa.get(i, j);
+                            valor = ((valor + 1) % 10);
+                            matrizDispersa.assign(i, j, valor);
+                        }
                     }
                 }
-                matrizDispersa.add(sum);
-                matrizDispersa.printMatrix(", ");
             }
             else if (tr == "dec")
             {
+                for (int i = 0; i < sizeMat; i++)
+                {
+                    for (int j = 0; j < sizeMat; j++)
+                    {
+                        if (matrizDispersa.get(i, j) == 0)
+                        {
+                            matrizDispersa.assign(i, j, 9);
+                        }
+                        else
+                        {
+                            int valor = matrizDispersa.get(i, j);
+                            valor = ((valor - 1) % 10);
+                            matrizDispersa.assign(i, j, valor);
+                        }
+                    }
+                }
             }
             else if (tr == "transpose")
             {
                 matrizDispersa = matrizDispersa.getTranspose();
-                // matrizDispersa.printMatrix("");
             }
         }
+        if (iteration != 1)
+            cout << endl;
+        cout << "Case #" << iteration << endl;
+        matrizDispersa.printMatrix("");
+
         iteration++;
     }
 }

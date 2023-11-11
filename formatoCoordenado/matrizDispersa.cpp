@@ -1,9 +1,5 @@
 /*
  * Autores: Sebastian Izquierdo S. y Joshua Mendez
- * Fecha de creación: 12 de Octubre
- * Fecha última modificación: 9 de Noviembre
- * Versión: 1.0
- *
  * Archivo CPP libreria TAD matriz Dispersa
  * Representación Estructuras Matriz Dispersa de la forma de coordenadas con vectores
  */
@@ -13,7 +9,7 @@ using namespace std;
 
 /* Constructoras */
 
-DisperseMatrix::DisperseMatrix() // inicializa una matriz dispersa vacia con tamaño 0 x 0
+DisperseMatrix::DisperseMatrix() // Inicializa una matriz dispersa vacía con tamaño 0 x 0
 {
     valores;
     filas;
@@ -39,8 +35,8 @@ DisperseMatrix::DisperseMatrix(int **&matriz, int fil, int col) // Recibe un arr
         }
     }
 }
-// siendo n = el numero de filas y m = el numero de columnas
-// siendo lo mas costoso n*m ,Complejidad O(n*m)
+// Siendo n = el numero de filas y m = el numero de columnas
+// Siendo lo mas costoso n*m. Complejidad O(n*m)
 DisperseMatrix::DisperseMatrix(const vector<vector<int>> &matriz) // Recibe un vector de vectores y lo vuelve una matriz dispersa
 {
     valores;
@@ -62,15 +58,15 @@ DisperseMatrix::DisperseMatrix(const vector<vector<int>> &matriz) // Recibe un v
         }
     }
 }
-// siendo n = el numero de filas y m = el numero de columnas
-// siendo lo mas costoso n*m ,Complejidad O(n*m)
-DisperseMatrix::DisperseMatrix(const DisperseMatrix &matriz) // copia una matriz dispersa
+// Siendo n = el numero de filas y m = el numero de columnas
+// Siendo lo mas costoso n*m. Complejidad O(n*m)
+DisperseMatrix::DisperseMatrix(const DisperseMatrix &matriz) // Copia una matriz dispersa
 {
     valores = matriz.valores;
     filas = matriz.filas;
     columnas = matriz.columnas;
 }
-// siendo n = el tamaño del vector
+// Siendo n = el tamaño del vector
 // Complejidad O(n)
 
 /* Modificadoras */
@@ -83,14 +79,14 @@ vector<vector<int>> DisperseMatrix::rebuild() // Convierte una matriz dispersa e
         int valor = valores[i];
         int fila = filas[i];
         int columna = columnas[i];
-        result[fila][columna] = valor; // agrega los valores en las posicion original
+        result[fila][columna] = valor; // agrega los valores en las posición original
     }
 
     return result;
 }
-// siendo n = el tamaño del vector
+// Siendo n el tamaño del vector
 // Complejidad O(n)
-void DisperseMatrix::assign(int i, int j, int v) // Ingresa un valor en la posicion i,j dada
+void DisperseMatrix::assign(int i, int j, int v) // Ingresa un valor en la posicion i, j dada
 {
     int cont = 0;
     bool flag = true;
@@ -98,7 +94,6 @@ void DisperseMatrix::assign(int i, int j, int v) // Ingresa un valor en la posic
     {
         if (filas[cont] == i && columnas[cont] == j)
         {
-            cout << "if" << endl;
             valores[cont] = v;
             flag = false;
         }
@@ -111,7 +106,7 @@ void DisperseMatrix::assign(int i, int j, int v) // Ingresa un valor en la posic
         columnas.push_back(j);
     }
 }
-// siendo n = el tamaño del vector
+// Siendo n el tamaño del vector
 // Complejidad O(n)
 void DisperseMatrix::add(DisperseMatrix &matriz) // Suma dos matrices dispersas
 {
@@ -135,10 +130,11 @@ void DisperseMatrix::add(DisperseMatrix &matriz) // Suma dos matrices dispersas
         }
     }
 }
-// siendo n = el tamaño del vector de la matriz 1 y m = el tamaño del vector de la matriz 2
-// siendo lo mas costoso n*m ,Complejidad O(n*m)
-void DisperseMatrix::productVector(vector<int> &vec) // multiplica un vector por una matriz dispersa
-{                                                    // Cuando se multiplica un vector por una matriz cada valor del vector multiplica una de las columnas de la matriz
+// Siendo n el tamaño del vector de la matriz 1 y m el tamaño del vector de la matriz 2
+// Siendo lo mas costoso n*m ,Complejidad O(n*m)
+void DisperseMatrix::productVector(vector<int> &vec) // Multiplica un vector por una matriz dispersa
+{
+    // Cuando se multiplica un vector por una matriz cada valor del vector multiplica una de las columnas de la matriz
     // Puedes asumir que siempre los tamaños serán consistentes
     int i = 0;
     while (i < valores.size())
@@ -147,12 +143,12 @@ void DisperseMatrix::productVector(vector<int> &vec) // multiplica un vector por
         i++;
     }
 }
-// siendo n = el tamaño del vector
+// Siendo n el tamaño del vector
 // Complejidad O(n)
 
 /* Analizadoras */
 
-int DisperseMatrix::get(int i, int j) // Retorna el valor de la posicion i,j
+int DisperseMatrix::get(int i, int j) // Retorna el valor de la posicion i, j
 {
     bool flag = false;
     int e, ans = 0;
@@ -169,10 +165,10 @@ int DisperseMatrix::get(int i, int j) // Retorna el valor de la posicion i,j
     }
     return ans;
 }
-// siendo n = el tamaño del vector
+// Siendo n el tamaño del vector
 // Complejidad O(n)
 
-list<pair<int, int>> DisperseMatrix::getRowLis(int fila) // Retorna una lista de enteros con los valores de la fila solicitada
+list<pair<int, int>> DisperseMatrix::getRowList(int fila) // Retorna una lista de enteros con los valores de la fila solicitada
 {
     list<pair<int, int>> result;
     int i;
@@ -187,9 +183,9 @@ list<pair<int, int>> DisperseMatrix::getRowLis(int fila) // Retorna una lista de
     }
     return result;
 }
-// siendo n = el tamaño del vector
+// Siendo n el tamaño del vector
 // Complejidad O(n)
-vector<pair<int, int>> DisperseMatrix::getRowVec(int fila) // Retorna un vector de pares de enteros con los valores de la fila y la columna correspondiente
+vector<pair<int, int>> DisperseMatrix::getRowVec(int fila) // Retorna un vector de pares de enteros con los valores y la columna correspondiente
 {
     vector<pair<int, int>> result;
     pair<int, int> par;
@@ -205,8 +201,10 @@ vector<pair<int, int>> DisperseMatrix::getRowVec(int fila) // Retorna un vector 
     }
     return result;
 }
+// Siendo n el tamaño del vector
+// Complejidad O(n)
 
-list<pair<int, int>> DisperseMatrix::getColList(int columna)
+list<pair<int, int>> DisperseMatrix::getColList(int columna) // Retorna una lista de pares de enteros con los valores y la fila correspondiente
 {
     list<pair<int, int>> result;
     int i;
@@ -221,9 +219,9 @@ list<pair<int, int>> DisperseMatrix::getColList(int columna)
     }
     return result;
 }
-// siendo n = el tamaño del vector
+// Siendo n el tamaño del vector
 // Complejidad O(n)
-vector<pair<int, int>> DisperseMatrix::getColVec(int columna) // Retorna un vector de pares de enteros con los valores de columna y la fila correspondiente
+vector<pair<int, int>> DisperseMatrix::getColVec(int columna) // Retorna un vector de pares de enteros con los valores y la fila correspondiente
 {
     vector<pair<int, int>> result;
     pair<int, int> par;
@@ -239,29 +237,9 @@ vector<pair<int, int>> DisperseMatrix::getColVec(int columna) // Retorna un vect
     }
     return result;
 }
-// siendo n = el tamaño del vector
+// Siendo n el tamaño del vector
 // Complejidad O(n)
-vector<pair<int, int>> DisperseMatrix::getDisperseRowVec(int fila) // Retorna un vector de pares de enteros con los valores de la fila y la columna correspondiente con sus 0
-{
-    vector<pair<int, int>> result;
-    pair<int, int> par;
-    for (int i = 0; i < nColumnas; i++)
-    {
-        par.first = 0;
-        par.second = i;
-    }
-
-    for (int i = 0; i < valores.size(); i++) // agrega en la posicion respectiva el valor diferente a 0
-    {
-        if (fila == filas[i])
-        {
-            result[columnas[i]].second = valores[i];
-        }
-    }
-    return result;
-}
-
-list<pair<int, int>> DisperseMatrix::getDisperseRowList(int fila)
+list<pair<int, int>> DisperseMatrix::getDisperseRowList(int fila) // Retorna una lista con los valores de la fila completando con 0 con su posición correspondiente en la columna
 {
     list<pair<int, int>> result;
     pair<int, int> par;
@@ -290,7 +268,30 @@ list<pair<int, int>> DisperseMatrix::getDisperseRowList(int fila)
 
     return result;
 }
-// siendo n = el valor maximo entre nColumnas y el tamaño del vector de valores
+// Siendo n el valor maximo entre nColumnas y el tamaño del vector de valores
+// Complejidad O(n)
+vector<pair<int, int>> DisperseMatrix::getDisperseRowVec(int fila) // Retorna un vector de pares de enteros con los valores y la columna correspondiente con sus 0
+{
+    vector<pair<int, int>> result;
+    pair<int, int> par;
+    for (int i = 0; i < nColumnas; i++)
+    {
+        par.first = 0;
+        par.second = i;
+        result.push_back(par);
+    }
+
+    for (int i = 0; i < valores.size(); i++) // agrega en la posicion respectiva el valor diferente a 0
+    {
+        if (fila == filas[i])
+        {
+
+            result[columnas[i]].first = valores[i];
+        }
+    }
+    return result;
+}
+// Siendo n el valor maximo entre nColumnas y el tamaño del vector de valores
 // Complejidad O(n)
 list<pair<int, int>> DisperseMatrix::getDisperseColList(int columna) // Retorna una lista de pares de enteros con los valores de columna y la fila correspondiente con sus 0
 {
@@ -321,7 +322,7 @@ list<pair<int, int>> DisperseMatrix::getDisperseColList(int columna) // Retorna 
 
     return result;
 }
-// siendo n = el valor maximo entre nFilas y el tamaño del vector de valores
+// Siendo n el valor maximo entre nFilas y el tamaño del vector de valores
 // Complejidad O(n)
 vector<pair<int, int>> DisperseMatrix::getDisperseColVec(int columna) // Retorna un vector de pares de enteros con los valores de columna y la fila correspondiente con sus 0
 {
@@ -331,6 +332,7 @@ vector<pair<int, int>> DisperseMatrix::getDisperseColVec(int columna) // Retorna
     {
         par.first = 0;
         par.first = i;
+        result.push_back(par);
     }
 
     for (int i = 0; i < valores.size(); i++) // agrega en la posicion respectiva el valor diferente a 0
@@ -364,9 +366,9 @@ void DisperseMatrix::printMatrix(string sep) // Imprime una matriz dispersa sepa
         cout << endl;
     }
 }
-// siendo n = el numero de filas y m = el numero de columnas
-// siendo lo mas costoso n*m Complejidad O(n*m)
-int DisperseMatrix::getMax() // retorna el valor maximo de la matriz dispersa
+// Siendo n el numero de filas y m el numero de columnas
+// Siendo lo mas costoso n*m Complejidad O(n*m)
+int DisperseMatrix::getMax() // Retorna el valor maximo de la matriz dispersa
 {
     int ans = -2147483648;
     for (int i = 0; i < valores.size(); i++)
@@ -376,7 +378,7 @@ int DisperseMatrix::getMax() // retorna el valor maximo de la matriz dispersa
     }
     return ans;
 }
-// siendo n = el tamaño del vector de valores
+// Siendo n el tamaño del vector de valores
 // Complejidad O(n)
 DisperseMatrix DisperseMatrix::getTranspose() // Retorna una matriz dispersa transpuesta
 {
@@ -391,7 +393,7 @@ DisperseMatrix DisperseMatrix::getTranspose() // Retorna una matriz dispersa tra
     }
     return matriz;
 }
-// siendo n = el tamaño del vector de valores
+// Siendo n el tamaño del vector de valores
 // Complejidad O(n)
 DisperseMatrix DisperseMatrix::addMatrixList(list<DisperseMatrix> &l) // Retorna una matriz dispersa la cual es la suma de toda las matrices dispersas de la lista
 {
@@ -403,8 +405,8 @@ DisperseMatrix DisperseMatrix::addMatrixList(list<DisperseMatrix> &l) // Retorna
     }
     return ans;
 }
-// siendo n = el tamaño de la lista y la sobrecarga + que tiene costo de O(n)
-// siendo lo mas costoso n*n Complejidad O(n**2)
+// Siendo n el tamaño de la lista y la sobrecarga + que tiene costo de O(n)
+// Siendo lo mas costoso n*n Complejidad O(n**2)
 
 /* Sobrecarga operadores */
 
@@ -460,7 +462,7 @@ DisperseMatrix DisperseMatrix::operator+(DisperseMatrix &matrix2) // Suma dos ma
 }
 // siendo n = el valor maximo entre el tamaño del vector valores de la matriz1 y la matriz 2
 // Complejidad O(n)
-DisperseMatrix DisperseMatrix::operator*(DisperseMatrix &matrix2) // multiplica dos matrices dispersas
+DisperseMatrix DisperseMatrix::operator*(DisperseMatrix &matrix2) // Multiplica dos matrices dispersas
 {
     DisperseMatrix result;
     int n = max(nColumnas, matrix2.nFilas), product;
@@ -486,9 +488,9 @@ DisperseMatrix DisperseMatrix::operator*(DisperseMatrix &matrix2) // multiplica 
     }
     return result;
 }
-// n = es el máximo entre nColumnas y matrix2.nFilas , m = nFilas , v = matriz2.nColumnas y get() que vale O(n)
-//  siendo la operacion mas costosa m*v*n*n , Complejidad O(m*v*n**2)
-bool DisperseMatrix::operator==(DisperseMatrix &matrix2) // compara si dos matrices dispersas son iguales
+// n = es el máximo entre nColumnas y matrix2.nFilas, m = nFilas, v = matriz2.nColumnas y get() que vale O(n)
+// Siendo la operacion mas costosa m*v*n*n , Complejidad O(m*v*n**2)
+bool DisperseMatrix::operator==(DisperseMatrix &matrix2) // Compara si dos matrices dispersas son iguales
 {
     bool ans = true;
     if (valores.size() != matrix2.valores.size())

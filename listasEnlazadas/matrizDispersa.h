@@ -1,11 +1,7 @@
 /*
- * Autores: Sebastian Izquierdo S. y Jhosua Mendez
- * Fecha de creación: 12 de Octubre
- * Fecha última modificación: 12 de Octubre
- * Versión: 1.0
- *
+ * Autores: Sebastian Izquierdo S. y Joshua Mendez
  * Archivo encabezado libreria TAD matriz Dispersa
- * Representación Estructuras Matriz Dispersa con listas Encadenadas Dobles
+ * Representación Estructuras Matriz Dispersa con listas
  */
 #ifndef __MATRIZDISPERSA_H
 #define __MATRIZDISPERSA_H
@@ -35,36 +31,36 @@ public:
      * OPERACIONES DEL TAD *
      ************************/
     /* Constructoras */
-    DisperseMatrix();                                       // Vacío --ready
-    DisperseMatrix(int **matrizA, int m, int n);            // Arreglo de 2 dimensiones --ready
-    DisperseMatrix(vector<vector<int>> &vec, int m, int n); // Vector de Vectores  --ready
-    DisperseMatrix(const DisperseMatrix &matriz1);          // Punto 3 --ready
+    DisperseMatrix();                       // Vacío
+    DisperseMatrix(int **, int, int);       // Arreglo de 2 dimensiones
+    DisperseMatrix(vector<vector<int>> &);  // Vector de Vectores
+    DisperseMatrix(const DisperseMatrix &); // Recibe una matriz dispersa
 
     /* Modificadoras */
-    vector<vector<int>> rebuild();        // Reconstruir la matriz dispersa a normal con ceros y la retonar --ready
-    void assign(int i, int j, int v);     // Modificar el valor en la posición i, j --ready
-    void add(DisperseMatrix &matriz2);    // Suma entre matrices --J
-    void productVector(vector<int> &vec); // Multiplica el objeto actual por el vector --ready
+    vector<vector<int>> rebuild();     // Reconstruir la matriz dispersa a normal con ceros y la retonar
+    void assign(int, int, int);        // Modificar el valor en la posición i, j
+    void add(DisperseMatrix &);        // Suma entre matrices
+    void productVector(vector<int> &); // Multiplica el objeto actual por el vector
 
     /* Analizadoras */
-    int get(int i, int j);                                           // Obtener valor i, j --ready
-    list<pair<int, int>> getRowList(int fila);                       // Retornar fila --ready
-    vector<pair<int, int>> getRowVec(int fila);                      // Retornar fila --ready
-    list<pair<int, int>> getColList(int columna);                    // Retornar columna --ready
-    vector<pair<int, int>> getColVec(int columna);                   // Retornar columna --ready
-    list<pair<int, int>> getDisperseRowLis(int fila);                // Retornar fila con ceros --ready
-    vector<pair<int, int>> getDisperseRowVec(int fila);              // Retornar una fila con ceros --ready
-    list<pair<int, int>> getDisperseColList(int columna);            // Retornar columna con ceros --ready
-    vector<pair<int, int>> getDisperseColVec(int columna);           // --ready
-    void printMatrix(string sep);                                    // Imprime la matriz con el separador --ready
-    int getMax();                                                    // Retorna el mayor elemento de la matriz --ready
-    DisperseMatrix getTranspose();                                   // Transpone la matriz --ready
-    DisperseMatrix addMatrixList(list<DisperseMatrix> &listaMatriz); // --ready
+    int get(int, int);                                    // Obtener valor i, j
+    list<pair<int, int>> getRowList(int);                 // Retornar fila
+    vector<pair<int, int>> getRowVec(int);                // Retornar fila
+    list<pair<int, int>> getColList(int);                 // Retornar columna
+    vector<pair<int, int>> getColVec(int);                // Retornar columna
+    list<pair<int, int>> getDisperseRowList(int);         // Retornar fila con ceros
+    vector<pair<int, int>> getDisperseRowVec(int);        // Retornar una fila con ceros
+    list<pair<int, int>> getDisperseColList(int);         // Retornar columna con ceros
+    vector<pair<int, int>> getDisperseColVec(int);        // Retornar columna con ceros
+    void printMatrix(string);                             // Imprime la matriz con el separador
+    int getMax();                                         // Retorna el mayor elemento de la matriz
+    DisperseMatrix getTranspose();                        // Transpone la matriz
+    DisperseMatrix addMatrixList(list<DisperseMatrix> &); // Suma todas las matrices dispersas de una lista
 
     /* Sobrecarga operadores */
-    DisperseMatrix operator+(DisperseMatrix &matriz); // Suma entre 2 matrices --ready
-    DisperseMatrix operator*(DisperseMatrix &matriz); // Multiplicación entre 2 matrices --ready
-    bool operator==(DisperseMatrix &matriz);          // Verifica si 2 matrices son iguales --ready
+    DisperseMatrix operator+(DisperseMatrix &); // Suma entre 2 matrices
+    DisperseMatrix operator*(DisperseMatrix &); // Multiplicación entre 2 matrices
+    bool operator==(DisperseMatrix &);          // Verifica si 2 matrices son iguales
 };
 
 #endif

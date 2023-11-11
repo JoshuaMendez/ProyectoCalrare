@@ -14,14 +14,9 @@ int main()
 
     DisperseMatrix matriz_2(matriz2);
 
-    list<pair<int, int>> lista;
-    lista = matriz_2.getDisperseColList(2);
+    matriz_2 = matriz_2.getTranspose();
 
-    for (pair<int, int> it : lista)
-    {
-        cout << it.first << " " << it.second << endl;
-    }
-    cout << endl;
+    matriz_2.printMatrix(", ");
 
     return 0;
 }
