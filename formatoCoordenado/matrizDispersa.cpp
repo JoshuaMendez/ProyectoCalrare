@@ -306,18 +306,17 @@ list<pair<int, int>> DisperseMatrix::getDisperseColList(int columna) // Retorna 
     int i = 0;
     while (i < valores.size() && it != result.end())
     {
-        // cout << "it " << it->second << endl;
-        if (i == valores.size())
-        {
-            i = 0;
-            it++;
-        }
         if (columnas[i] == columna && filas[i] == it->second)
         {
             it->first = valores[i];
             it++;
         }
         i++;
+        if (i == valores.size() && it != result.end())
+        {
+            i = 0;
+            it++;
+        }
     }
 
     return result;
