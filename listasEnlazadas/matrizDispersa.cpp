@@ -1,5 +1,10 @@
 #include "matrizDispersa.h"
 
+bool comparador(pair<int, int> &a, pair<int, int> &b)
+{
+    return a.second < b.second;
+}
+
 /* Constructoras */
 
 DisperseMatrix::DisperseMatrix()
@@ -109,157 +114,79 @@ void DisperseMatrix::assign(int i, int j, int v)
     }
 }
 
-void DisperseMatrix::add(DisperseMatrix &matriz2)
+void DisperseMatrix::add(DisperseMatrix &sum)
 {
-    int vecMax = max(matriz.size(), matriz2.matriz.size());
-    for (int i = 0; i < vecMax; i++)
+    DisperseMatrix result;
+    result.nFilas = max(nFilas, sum.nFilas);
+    result.nColumnas = max(nColumnas, sum.nColumnas);
+    result.matriz.resize(result.nFilas);
+    int i = 0;
+    pair<int, int> par;
+    int valor;
+
+    while (i < result.nFilas)
     {
-        if (matriz.size() > matriz2.matriz.size())
+        if (i < nFilas)
         {
-            while (matriz.size() != matriz2.matriz.size())
+            for (list<pair<int, int>>::iterator it = matriz[i].begin(); it != matriz[i].end(); it++)
             {
-                matriz2.matriz.push_back(list<pair<int, int>>());
-            }
-        }
-        else if (matriz2.matriz.size() > matriz.size())
-        {
-            while (matriz.size() != matriz2.matriz.size())
-            {
-                matriz.push_back(list<pair<int, int>>());
-            }
-        }
-    }
-    int filMaxMat1 = 0, filMaxMat2 = 0;
-    for (int i = 0; i < matriz.size(); i++)
-    {
-        list<pair<int, int>>::iterator it;
-        it = matriz[i].begin();
-        while (it != matriz[i].end())
-        {
-            if (it->second > filMaxMat1)
-                filMaxMat1 = it->second;
-            it++;
-        }
-    }
-    for (int i = 0; i < matriz2.matriz.size(); i++)
-    {
-        list<pair<int, int>>::iterator it;
-        it = matriz2.matriz[i].begin();
-        while (it != matriz2.matriz[i].end())
-        {
-            if (it->second > filMaxMat2)
-                filMaxMat2 = it->second;
-            it++;
-        }
-    }
-    for (int i = 0; i < vecMax; i++)
-    {
-        if (matriz[i].size() > matriz2.matriz[i].size())
-        {
-            list<pair<int, int>>::iterator it = matriz2.matriz[i].begin();
-            for (int j = 0; j < filMaxMat1; j++)
-            {
-                if ()
+                bool sumado = false;
+                if (i < sum.nFilas)
                 {
-                    pair<int, int> par;
-                    par = make_pair(0, j);
-                    matriz2.matriz[i].push_back(par);
+                    for (list<pair<int, int>>::iterator it1 = sum.matriz[i].begin(); it1 != sum.matriz[i].end(); it1++)
+                    {
+                        if (it->second == it1->second)
+                        {
+                            valor = it->first + it1->first;
+                            par.first = valor;
+                            par.second = it->second;
+                            result.matriz[i].push_back(par);
+                            sumado = true;
+                        }
+                    }
+                }
+                if (!sumado)
+                {
+                    par.first = it->first;
+                    par.second = it->second;
+                    result.matriz[i].push_back(par);
                 }
             }
         }
-        // else if (matriz2.matriz[i].size() > matriz[i].size())
-        // {
-        //     list<pair<int, int>>::iterator it = matriz[i].begin();
-        //     for (int j = 0; j < filMax; j++)
-        //     {
-        //         if (!(it->second == j))
-        //         {
-        //             pair<int, int> par;
-        //             par = make_pair(0, j);
-        //             matriz2.matriz[i].push_back(par);
-        //         }
-        //     }
-        // }
-        cout << "m2" << endl;
-    }
-    for (int i = 0; i < matriz2.matriz[i].size(); i++)
-    {
-        for (pair<int, int> elemento : matriz2.matriz[i])
+        if (i < sum.nFilas)
         {
-            cout << elemento.first << " ";
+            pair<int, int> par;
+            for (list<pair<int, int>>::iterator it = sum.matriz[i].begin(); it != sum.matriz[i].end(); it++)
+            {
+                bool found = false;
+                list<pair<int, int>>::iterator it1 = result.matriz[i].begin();
+
+                while (it1 != result.matriz[i].end() && !found)
+                {
+                    if (it->second == it1->second)
+                    {
+                        found = true;
+                    }
+                    else
+                    {
+                        ++it1;
+                    }
+                }
+
+                if (!found)
+                {
+                    par.first = it->first;
+                    par.second = it->second;
+                    result.matriz[i].push_front(par);
+                }
+            }
+            result.matriz[i].sort(comparador);
         }
-        cout << endl;
+
+        i++;
     }
-    cout << endl;
+    *this = result;
 }
-
-// bool reachLimMat2 = false;
-// int maxIt = max(matriz[i].size(), matriz2.matriz[i].size());
-// list<pair<int, int>>::iterator it1 = matriz[i].begin();
-// list<pair<int, int>>::iterator it2 = matriz2.matriz[i].begin();
-// int j = 0;
-// while (j < maxIt)
-// {
-//     int tmp = 0;
-//     cout << "fila " << i << endl;
-//     cout << "rLM2 " << reachLimMat2 << endl;
-//     if (it1->second == it2->second && !reachLimMat2)
-//     {
-//         tmp += (it1->first + it2->first);
-//         cout << "it1->first " << it1->first << " it2->first " << it2->first << endl;
-//         cout << "tm " << tmp << endl;
-//         cout << it2->second << " " << matriz2.matriz[i].size() - 1 << endl;
-//         if (it2->second == matriz2.matriz[i].size() - 1 && !reachLimMat2)
-//             reachLimMat2 = true;
-//         it1->first = tmp;
-//     }
-//     if (reachLimMat2)
-//     {
-//         it1->first += 0;
-//     }
-
-//     it1++;
-//     it2++;
-
-//     j++;
-// }
-// cout << endl;
-// printMatrix(",");
-// cout << endl;
-// // for (int j = 0; j < maxIt; j++, it1++, it2++)
-// // {
-// //     int tmp = 0;
-// //     if (it1->second == it2->second && !reachLimMat2)
-// //     {
-// //         tmp += (it1->first + it2->first);
-// //         cout << "tm " << tmp << endl;
-// //         if ()
-// //     }
-// //     it1->first = tmp;
-// // }
-// }
-// Podría ir fila por fila verificando la columna y si esa fila y columna también existe en la matriz2,
-// sumarle eso, sino, sumar 0
-
-// for (int fila = 0; fila < nFilas; fila++)
-// {
-//     cout << "Fila " << fila << ": ";
-//     for (const pair<int, int> &elemento : matriz[fila])
-//     {
-//         cout << "(" << elemento.first << ", " << elemento.second << ") ";
-//     }
-//     cout << endl;
-// }
-// cout << endl;
-// for (int fila = 0; fila < matriz2.nFilas; fila++)
-// {
-//     cout << "Fila " << fila << ": ";
-//     for (const pair<int, int> &elemento : matriz2.matriz[fila])
-//     {
-//         cout << "(" << elemento.first << ", " << elemento.second << ") ";
-//     }
-//     cout << endl;
-// }
 
 void DisperseMatrix::productVector(vector<int> &vec)
 {
@@ -548,18 +475,14 @@ DisperseMatrix DisperseMatrix::addMatrixList(list<DisperseMatrix> &listaMatriz)
     {
         ans = ans + *it;
     }
-    ans.printMatrix(",");
 
     return ans;
 }
 
 /* Sobrecarga operadores */
-bool comparador(pair<int, int> &a, pair<int, int> &b)
-{
-    return a.second < b.second;
-}
+
 DisperseMatrix DisperseMatrix::operator+(DisperseMatrix &sum)
-{   
+{
     DisperseMatrix result;
     result.nFilas = max(nFilas, sum.nFilas);
     result.nColumnas = max(nColumnas, sum.nColumnas);
@@ -575,27 +498,26 @@ DisperseMatrix DisperseMatrix::operator+(DisperseMatrix &sum)
             for (list<pair<int, int>>::iterator it = matriz[i].begin(); it != matriz[i].end(); it++)
             {
                 bool sumado = false;
-                 if (i < sum.nFilas)
+                if (i < sum.nFilas)
                 {
                     for (list<pair<int, int>>::iterator it1 = sum.matriz[i].begin(); it1 != sum.matriz[i].end(); it1++)
                     {
                         if (it->second == it1->second)
                         {
-                        valor = it->first + it1->first;
-                        par.first = valor;
-                        par.second = it->second;
-                        result.matriz[i].push_back(par);
-                        sumado = true;
+                            valor = it->first + it1->first;
+                            par.first = valor;
+                            par.second = it->second;
+                            result.matriz[i].push_back(par);
+                            sumado = true;
                         }
                     }
-                }    
+                }
                 if (!sumado)
                 {
                     par.first = it->first;
                     par.second = it->second;
                     result.matriz[i].push_back(par);
                 }
-                
             }
         }
         if (i < sum.nFilas)

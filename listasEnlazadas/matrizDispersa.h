@@ -37,7 +37,6 @@ public:
     /* Constructoras */
     DisperseMatrix();                                       // Vacío --ready
     DisperseMatrix(int **matrizA, int m, int n);            // Arreglo de 2 dimensiones --ready
-    DisperseMatrix(const DisperseMatrix &matriz1); // copia -ready
     DisperseMatrix(vector<vector<int>> &vec, int m, int n); // Vector de Vectores  --ready
     DisperseMatrix(const DisperseMatrix &matriz1);          // Punto 3 --ready
 
@@ -60,11 +59,11 @@ public:
     void printMatrix(string sep);                                    // Imprime la matriz con el separador --ready
     int getMax();                                                    // Retorna el mayor elemento de la matriz --ready
     DisperseMatrix getTranspose();                                   // Transpone la matriz --ready
-    DisperseMatrix addMatrixList(list<DisperseMatrix> &listaMatriz); // --J
+    DisperseMatrix addMatrixList(list<DisperseMatrix> &listaMatriz); // --ready
 
     /* Sobrecarga operadores */
     DisperseMatrix operator+(DisperseMatrix &matriz); // Suma entre 2 matrices --ready
-    DisperseMatrix operator*(DisperseMatrix &matriz); // Multiplicación entre 2 matrices --J
+    DisperseMatrix operator*(DisperseMatrix &matriz); // Multiplicación entre 2 matrices --ready
     bool operator==(DisperseMatrix &matriz);          // Verifica si 2 matrices son iguales --ready
 };
 

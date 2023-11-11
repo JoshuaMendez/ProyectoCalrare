@@ -50,11 +50,11 @@ public:
     int get(int, int);                                    // Obtener valor i, j
     list<pair<int, int>> getRowLis(int);                  // Retornar fila
     vector<pair<int, int>> getRowVec(int);                // Retornar fila
-    list<pair<int, int>> getColLis(int);                  // Retornar columna
+    list<pair<int, int>> getColList(int);                  // Retornar columna
     vector<pair<int, int>> getColVec(int);                //  Retornar columna
-    list<pair<int, int>> getDisperseRowLis(int);          // Retornar fila con ceros
+    list<pair<int, int>> getDisperseRowList(int);          // Retornar fila con ceros
     vector<pair<int, int>> getDisperseRowVec(int);        // Retornar una fila con ceros
-    list<pair<int, int>> getDisperseColLis(int);          // Retornar columna con ceros
+    list<pair<int, int>> getDisperseColList(int);          // Retornar columna con ceros
     vector<pair<int, int>> getDisperseColVec(int);        // Retornar columna con ceros
     void printMatrix(string);                             // Imprime la matriz con el separador
     int getMax();                                         // Retorna el mayor elemento de la matriz
