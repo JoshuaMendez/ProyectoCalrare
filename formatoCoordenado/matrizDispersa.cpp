@@ -37,7 +37,7 @@ DisperseMatrix::DisperseMatrix(int **&matriz, int fil, int col) // Recibe un arr
 }
 // Siendo n = el numero de filas y m = el numero de columnas
 // Siendo lo mas costoso n*m. Complejidad O(n*m)
-DisperseMatrix::DisperseMatrix(const vector<vector<int>> &matriz) // Recibe un vector de vectores y lo vuelve una matriz dispersa
+DisperseMatrix::DisperseMatrix( vector<vector<int>> &matriz) // Recibe un vector de vectores y lo vuelve una matriz dispersa
 {
     valores;
     filas;

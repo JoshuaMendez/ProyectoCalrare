@@ -37,7 +37,7 @@ DisperseMatrix::DisperseMatrix(int **matrizA, int m, int n) // Recibe un arreglo
         }
     }
 }
-// Siendo m = el numero de filas y n = el numero de columnas
+// Siendo n = el numero de filas y m = el numero de columnas
 // Siendo lo mas costoso n*m. Complejidad O(n*m)
 DisperseMatrix::DisperseMatrix(vector<vector<int>> &vec) // Recibe un vector de vectores y lo vuelve una matriz dispersa
 {
@@ -244,7 +244,7 @@ list<pair<int, int>> DisperseMatrix::getRowList(int fila) // Retorna una lista d
 {
     return matriz[fila]; // retorna la lista con valor y columna
 }
-
+// Complejidad O(1)
 vector<pair<int, int>> DisperseMatrix::getRowVec(int fila) // Retorna un vector de pares de enteros los valores y la columna correspondiente
 {
     list<pair<int, int>>::iterator it;
