@@ -93,9 +93,16 @@ void DisperseMatrix::assign(int i, int j, int v) // Ingresa un valor en la posic
     while (flag && cont < valores.size()) // Se verifica que la posición no exista.
     {
         if (filas[cont] == i && columnas[cont] == j)
-        {
-            valores[cont] = v;
+        {   if(v != 0){
+                valores[cont] = v;
+             }else{
+                valores.erase(valores.begin() + cont);
+                filas.erase(filas.begin() + cont);
+                columnas.erase(columnas.begin() + cont);
+             }
+           
             flag = false;
+
         }
         cont++;
     }
