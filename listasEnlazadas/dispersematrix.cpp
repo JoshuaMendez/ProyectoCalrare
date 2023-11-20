@@ -20,7 +20,7 @@ DisperseMatrix::DisperseMatrix() // Inicializa una matriz dispersa vacía con ta
 }
 // Complejidad O(1)
 DisperseMatrix::DisperseMatrix(int **matrizA, int m, int n) // Recibe un arreglo de dos dimensiones y lo vuelve una matriz dispersa
-{
+{   matriz.resize(m);
     nFilas = m;
     nColumnas = n;
     for (int i = 0; i < m; i++)
@@ -28,11 +28,12 @@ DisperseMatrix::DisperseMatrix(int **matrizA, int m, int n) // Recibe un arreglo
         for (int j = 0; j < n; j++)
         {
             if (matrizA[i][j] != 0)
-            {
+            { 
                 pair<int, int> par;
                 par.first = matrizA[i][j];
                 par.second = j;
                 matriz[i].push_back(par);
+               
             }
         }
     }

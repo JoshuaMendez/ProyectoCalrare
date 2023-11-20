@@ -34,7 +34,7 @@ public:
 
     /* Constructoras */
     DisperseMatrix();                       // Vacío
-    DisperseMatrix(int **&, int, int);      // Arreglo de 2 dimensiones
+    DisperseMatrix(int **, int, int);      // Arreglo de 2 dimensiones
     DisperseMatrix(vector<vector<int>> &);  // Vector de Vectores
     DisperseMatrix(const DisperseMatrix &); // Recibe una matriz dispersa
 
@@ -61,7 +61,7 @@ public:
     /* Sobrecarga operadores */
     DisperseMatrix operator+(DisperseMatrix &); // Suma entre 2 matrices
     DisperseMatrix operator*(DisperseMatrix &); // Multiplicación entre 2 matrices
-    bool operator==(DisperseMatrix &);          // Verifica si 2 matrices son iguales
+    bool operator==(DisperseMatrix &);          // Verifica si 2 matrices son igualess
 };
 
 #endif

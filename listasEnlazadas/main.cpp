@@ -1,140 +1,238 @@
-#include "matrizDispersa.h"
-
-// int main()
-// {
-//     // vector<vector<int>> vec1 = {
-//     //     {0, 2, 0, 0, 0, 0, 4},
-//     //     {0, 8, 9, 0, 0, 1, 0},
-//     //     {0, 0, 0, 3, 0, 0, 0},
-//     //     {0, 0, 0, 0, 0, 0, 0},
-//     //     {5, 0, 0, 0, 0, 6, 0},
-//     //     {1, 2, 0, 0, 0, 0, 0},
-//     //     {4, 0, 0, 0, 0, 0, 0},
-//     //     {0, 0, 7, 0, 0, 11, 0}};
-
-//     // vector<vector<int>> vec6 = {
-//     //     {3, 8, 0, 12, 0},
-//     //     {0, 6, 15, 0, 7},
-//     //     {9, 0, 0, 14, 2},
-//     //     {5, 10, 0, 0, 18},
-//     //     {0, 4, 11, 0, 1}};
-
-//     vector<vector<int>> vec1 = {
-//         {1, 2, 3, 4},
-//         {5, 6, 7, 8},
-//         {9, 1, 2, 3},
-//         {4, 5, 6, 7}};
-
-//     vector<vector<int>> vec6 = {
-//         {2, 2},
-//         {2, 2},
-//         {2, 2},
-//         {2, 0},
-//         {2, 2}};
-
-//     DisperseMatrix matriz1(vec1, 4, 4);
-//     DisperseMatrix matriz6(vec6, 5, 2);
-
-//     matriz1.add(matriz6);
-
-//     matriz1.printMatrix(", ");
-
-//     return 0;
-// }
-
-// int main()
-// {
-//     vector<vector<int>> matriz1 = {{5, 3, -4, -2},
-//                                    {8, -1, 0, -3}};
-
-//     DisperseMatrix matriz_1(matriz1, 2, 4);
-
-//     vector<vector<int>> matriz2 = {{1, 4, 0},
-//                                    {-5, 3, 7},
-//                                    {0, -9, 5},
-//                                    {5, 1, 4}};
-
-//     DisperseMatrix matriz_2(matriz2, 4, 3);
-//     // get(fila1, i) * matrix2.get(i, col2);
-//     matriz_1 *matriz_2;
-
-//     return 0;
-// }
+#include "dispersematrix.h"
 
 int main()
 {
-    vector<vector<int>> vec1 = {
-        {0, 2, 0, 0, 0, 0, 4},
-        {0, 8, 9, 0, 0, 1, 0},
-        {0, 0, 0, 3, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0},
-        {5, 0, 0, 0, 0, 6, 0},
-        {1, 2, 0, 0, 0, 0, 0},
-        {4, 0, 0, 0, 0, 0, 0},
-        {0, 0, 7, 0, 0, 11, 0}};
-
-    vector<vector<int>> vec2 = {
-        {9, 2, 12, 17, 8, 5, 4},
-        {3, 8, 9, 14, 21, 1, 6},
-        {11, 15, 6, 3, 2, 9, 10},
-        {5, 13, 19, 1, 4, 6, 2},
-        {5, 7, 8, 9, 7, 6, 1},
-        {1, 2, 14, 5, 12, 3, 7},
-        {4, 16, 3, 18, 8, 20, 8},
-        {10, 2, 7, 16, 22, 11, 3}};
-
-    vector<vector<int>> vec3 = {
-        {6, 18, 9, 0, 14, 0, 7},
-        {23, 0, 8, 4, 12, 0, 5},
-        {0, 11, 0, 3, 0, 19, 0},
-        {10, 0, 0, 0, 0, 13, 0},
-        {0, 16, 2, 0, 0, 0, 21},
-        {0, 0, 17, 0, 20, 0, 8},
-        {1, 15, 0, 0, 0, 0, 0}};
-
-    vector<vector<int>> vec4 = {
-        {10, 0, 18, 0, 25, 0, 7},
-        {6, 12, 0, 0, 0, 19, 8},
-        {0, 21, 17, 9, 0, 4, 0},
-        {13, 0, 0, 5, 0, 16, 0},
-        {0, 0, 11, 14, 3, 0, 0},
-        {23, 0, 0, 0, 1, 22, 0},
-        {2, 0, 0, 0, 15, 20, 0}};
-
-    vector<vector<int>> vec5 = {
-        {8, 0, 17, 0, 22, 0, 3},
-        {11, 5, 0, 0, 0, 19, 0},
-        {0, 9, 14, 6, 0, 1, 0},
-        {13, 0, 0, 7, 0, 20, 0},
-        {0, 0, 12, 4, 10, 0, 0},
-        {25, 0, 0, 0, 2, 16, 0},
-        {1, 0, 0, 0, 18, 15, 0}};
-
-    vector<vector<int>> vec6 = {
-        {3, 8, 0, 12, 0},
-        {0, 6, 15, 0, 7},
-        {9, 0, 0, 14, 2},
-        {5, 10, 0, 0, 18},
-        {0, 4, 11, 0, 1}};
-
-    DisperseMatrix matriz1(vec1, 8, 7);
-    DisperseMatrix matriz2(vec2, 8, 7);
-    DisperseMatrix matriz3(vec3, 7, 7);
-    DisperseMatrix matriz4(vec4, 7, 7);
-    DisperseMatrix matriz5(vec5, 7, 7);
-    DisperseMatrix matriz6(vec6, 5, 5);
-
+    int **mat1;
+    int n, m, i, j, q, r, c, v, casos;
+    DisperseMatrix d, d2, d3, d4, d5, d6, d7;
+    vector<vector<int>> mat2;
+    vector<int> vec;
     list<DisperseMatrix> l;
-    l.push_back(matriz1);
-    l.push_back(matriz2);
-    l.push_back(matriz3);
-    l.push_back(matriz4);
-    l.push_back(matriz5);
-    l.push_back(matriz6);
+    vector<pair<int, int>> vp;
+    list<pair<int, int>> lp;
+    // deque<pair<int, int>> lp;
+    list<pair<int, int>>::iterator it;
+    // deque<pair<int, int>>::iterator it;
 
-    DisperseMatrix a;
-    a = a.addMatrixList(l);
-    a.printMatrix(", ");
+    scanf("%d", &casos);
+    while (casos > 0)
+    {
+        mat2.clear();
+        vec.clear();
+        scanf("%d %d", &n, &m);
+        mat1 = new int *[n];
+        for (i = 0; i < n; ++i)
+        {
+            mat1[i] = new int[m];
+        }
 
+        for (i = 0; i < n; ++i)
+        {
+            mat2.push_back(vector<int>());
+            for (j = 0; j < m; ++j)
+            {
+                scanf("%d", &mat1[i][j]);
+                mat2[i].push_back(mat1[i][j]);
+            }
+        }
+
+
+        d = DisperseMatrix(mat1, n, m);
+        printf("Matriz 1:\n");
+        d.printMatrix(", ");
+
+        d2 = DisperseMatrix(mat2);
+        printf("Matriz 2:\n");
+        d2.printMatrix(", ");
+
+        printf("Max: %d\n", d.getMax());
+
+        scanf("%d", &q);
+        for (i = 0; i < q; ++i)
+        {
+            scanf("%d %d", &r, &c);
+            printf("%d\n", d.get(r, c));
+        }
+
+        scanf("%d", &q);
+        for (i = 0; i < q; ++i)
+        {
+            scanf("%d %d %d", &r, &c, &v);
+            d2.assign(r, c, v);
+        }
+
+        d2.printMatrix("---");
+        printf("Max: %d\n", d2.getMax());
+
+        for (i = 0; i < m; ++i)
+        {
+            scanf("%d", &v);
+            vec.push_back(v);
+        }
+
+        d.productVector(vec);
+        d.printMatrix(" ");
+
+        d3 = d.getTranspose();
+        d3.printMatrix(",");
+
+        d4 = DisperseMatrix(d);
+        d4.printMatrix("  ");
+
+        if (d == d4)
+            cout << "d y d4 son iguales" << endl;
+        else
+            cout << "d y d4 son diferentes" << endl;
+
+        if (d == d2)
+            cout << "d y d2 son iguales" << endl;
+        else
+            cout << "d y d2 son diferentes" << endl;
+
+        scanf("%d", &q);
+        for (i = 0; i < q; ++i)
+        {
+            scanf("%d %d %d", &r, &c, &v);
+            d4.assign(r, c, v);
+        }
+
+        d4.printMatrix(", ");
+
+        printf("Result:\n");
+        d.add(d4);
+        d.printMatrix(" . ");
+
+        d3 = d.getTranspose();
+        d3.printMatrix(",");
+
+        d5 = d * d3;
+        d5.printMatrix(" * ");
+
+        d6 = d3 * d;
+        d6.printMatrix(", ");
+        
+        d6 = d + d5;
+        d6.printMatrix("---");
+        d5.printMatrix("*");
+        
+        vector<vector<int>> vec2 = d5.rebuild();
+
+        printf("Vector:\n");
+        for (i = 0; i < vec2.size(); ++i)
+        {
+            for (j = 0; j < vec2[i].size(); ++j)
+                printf("%d ", vec2[i][j]);
+            printf("\n");
+        }
+
+        d6 = DisperseMatrix(vec2);
+        d6.printMatrix("...");
+
+        scanf("%d %d", &n, &m);
+        mat1 = new int *[n];
+        for (i = 0; i < n; ++i)
+        {
+            mat1[i] = new int[m];
+        }
+
+        for (i = 0; i < n; ++i)
+        {
+            for (j = 0; j < m; ++j)
+                scanf("%d", &mat1[i][j]);
+        }
+
+        d7 = DisperseMatrix(mat1, n, m);
+        d7.printMatrix("---[]---");
+
+        l.clear();
+        l.push_back(d);
+        l.push_back(d2);
+        l.push_back(d3);
+        l.push_back(d4);
+        l.push_back(d5);
+        l.push_back(d6);
+        l.push_back(d7);
+
+        d6 = DisperseMatrix::addMatrixList(l);
+        d6.printMatrix("-.-");
+
+        printf("Max: %d\n", d6.getMax());
+
+        scanf("%d", &q);
+        for (i = 0; i < q; ++i)
+        {
+            scanf("%d", &r);
+            vp = d6.getRowVec(r);
+            printf("--------------------------------------\n");
+            printf("Row Vec %d:\n", r);
+            for (j = 0; j < vp.size(); ++j)
+            {
+                printf("(%d, %d)\n", vp[j].first, vp[j].second);
+            }
+
+            vp = d6.getDisperseRowVec(r);
+            printf("--------------------------------------\n");
+            printf("DisperseRow Vec %d:\n", r);
+            for (j = 0; j < vp.size(); ++j)
+            {
+                printf("(%d, %d)\n", vp[j].first, vp[j].second);
+            }
+
+            list<pair<int, int>> lp = d6.getRowList(r);
+            printf("--------------------------------------\n");
+            printf("Row List %d:\n", r);
+            for (it = lp.begin(); it != lp.end(); ++it)
+            {
+                printf("(%d, %d)\n", it->first, it->second);
+            }
+
+            lp = d6.getDisperseRowList(r);
+            printf("--------------------------------------\n");
+            printf("DisperseRow List %d:\n", r);
+            for (it = lp.begin(); it != lp.end(); ++it)
+            {
+                printf("(%d, %d)\n", it->first, it->second);
+            }
+
+            vp = d6.getColVec(r);
+            printf("--------------------------------------\n");
+            printf("Col Vec %d:\n", r);
+            for (j = 0; j < vp.size(); ++j)
+            {
+                printf("(%d, %d)\n", vp[j].first, vp[j].second);
+            }
+
+            vp = d6.getDisperseColVec(r);
+            printf("--------------------------------------\n");
+            printf("DisperseCol Vec %d:\n", r);
+            for (j = 0; j < vp.size(); ++j)
+            {
+                printf("(%d, %d)\n", vp[j].first, vp[j].second);
+            }
+
+            lp = d6.getColList(r);
+            printf("--------------------------------------\n");
+            printf("Col List %d:\n", r);
+            for (it = lp.begin(); it != lp.end(); ++it)
+            {
+                printf("(%d, %d)\n", it->first, it->second);
+            }
+
+            lp = d6.getDisperseColList(r);
+            printf("--------------------------------------\n");
+            printf("DisperseCol List %d:\n", r);
+            for (it = lp.begin(); it != lp.end(); ++it)
+            {
+                printf("(%d, %d)\n", it->first, it->second);
+            }
+        }
+
+        --casos;
+        if (casos)
+            printf("\n");
+        for (i = 0; i < n; ++i)
+            delete mat1[i];
+        delete mat1;
+    }
     return 0;
 }
