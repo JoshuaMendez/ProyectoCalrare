@@ -87,26 +87,22 @@ vector<vector<int>> DisperseMatrix::rebuild() // Convierte una matriz dispersa e
 // Complejidad O(n)
 void DisperseMatrix::assign(int i, int j, int v) // Ingresa un valor en la posicion i, j dada
 {
-    int pos = 0;
-    while (pos < valores.size() && (filas[pos] < i || (filas[pos] == i && columnas[pos] < j)))
+    int cont = 0;
+    bool flag = true;
+    while (flag && cont < valores.size()) // Se verifica que la posición no exista.
     {
-        pos++;
-    }
-
-    if (v == 0)
-    {
-        if (pos < valores.size() && filas[pos] == i && columnas[pos] == j)
+        if (filas[cont] == i && columnas[cont] == j)
         {
-            valores.erase(valores.begin() + pos);
-            filas.erase(filas.begin() + pos);
-            columnas.erase(columnas.begin() + pos);
+            valores[cont] = v;
+            flag = false;
         }
+        cont++;
     }
-    else
+    if (flag)
     {
-        valores.insert(valores.begin() + pos, v);
-        filas.insert(filas.begin() + pos, i);
-        columnas.insert(columnas.begin() + pos, j);
+        valores.push_back(v);
+        filas.push_back(i);
+        columnas.push_back(j);
     }
 }
 // Siendo n el tamaño del vector
@@ -413,57 +409,27 @@ DisperseMatrix DisperseMatrix::addMatrixList(list<DisperseMatrix> &l)
 
 /* Sobrecarga operadores */
 
-DisperseMatrix DisperseMatrix::operator+(DisperseMatrix &matrix2) // Suma dos matrices dispersas
+DisperseMatrix DisperseMatrix::operator+(DisperseMatrix &matrix2)
 {
     DisperseMatrix result;
-    int size1 = valores.size();
-    int size2 = matrix2.valores.size();
-    int i = 0, j = 0;
-    // Realiza la suma mientras haya elementos en ambas matrices
-    while (i < size1 && j < size2)
-    {
-        if (filas[i] == matrix2.filas[j] && columnas[i] == matrix2.columnas[j])
-        {
-            result.valores.push_back(valores[i] + matrix2.valores[j]);
-            result.filas.push_back(filas[i]);
-            result.columnas.push_back(columnas[i]);
-            i++;
-            j++;
-        }
-        else if (filas[i] < matrix2.filas[j] || (filas[i] == matrix2.filas[j] && columnas[i] < matrix2.columnas[j]))
-        {
-            result.valores.push_back(valores[i]);
-            result.filas.push_back(filas[i]);
-            result.columnas.push_back(columnas[i]);
-            i++;
-        }
-        else
-        {
-            result.valores.push_back(matrix2.valores[j]);
-            result.filas.push_back(matrix2.filas[j]);
-            result.columnas.push_back(matrix2.columnas[j]);
-            j++;
-        }
-    }
-    // Agrega los elementos restantes de la primera matriz, si los hay
-    while (i < size1)
-    {
-        result.valores.push_back(valores[i]);
-        result.filas.push_back(filas[i]);
-        result.columnas.push_back(columnas[i]);
-        i++;
-    }
-    // Agrega los elementos restantes de la segunda matriz, si los hay
-    while (j < size2)
-    {
-        result.valores.push_back(matrix2.valores[j]);
-        result.filas.push_back(matrix2.filas[j]);
-        result.columnas.push_back(matrix2.columnas[j]);
-        j++;
-    }
+    int n = max(nFilas, matrix2.nFilas);
+    int m = max(nColumnas, matrix2.nColumnas);
 
-    result.nColumnas = max(nColumnas, matrix2.nColumnas);
-    result.nFilas = max(nFilas, matrix2.nFilas);
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            int sum = get(i, j) + matrix2.get(i, j);
+            if (sum != 0)
+            {
+                result.valores.push_back(sum);
+                result.filas.push_back(i);
+                result.columnas.push_back(j);
+            }
+        }
+    }
+    result.nFilas = n;
+    result.nColumnas = m;
     return result;
 }
 // siendo n = el valor maximo entre el tamaño del vector valores de la matriz1 y la matriz 2
