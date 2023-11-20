@@ -81,17 +81,7 @@ void DisperseMatrix::assign(int i, int j, int v) // Ingresa un valor en la posic
     {
         if (filas[cont] == i && columnas[cont] == j)
         {
-            if (v != 0)
-            {
-                valores[cont] = v;
-            }
-            else
-            {
-                valores.erase(valores.begin() + cont);
-                filas.erase(filas.begin() + cont);
-                columnas.erase(columnas.begin() + cont);
-            }
-
+            valores[cont] = v;
             flag = false;
         }
         cont++;
@@ -153,7 +143,7 @@ vector<pair<int, int>> DisperseMatrix::getDisperseColVec(int columna) // Retorna
     for (int i = 0; i < nFilas; i++)
     {
         par.first = 0;
-        par.first = i;
+        par.second = i;
         result.push_back(par);
     }
 
@@ -227,10 +217,14 @@ int main()
 
         DisperseMatrix matrizDispersa(mat);
 
-        int trCases;
+        int trCases, debug = 284;
         cin >> trCases;
         while (trCases--)
         {
+            // cout << endl;
+            // cout << debug << endl;
+            // matrizDispersa.printMatrix("");
+            debug++;
             string tr;
             cin >> tr;
 
@@ -238,36 +232,43 @@ int main()
             {
                 int a, b;
                 cin >> a >> b;
-                vector<pair<int, int>> rowA, rowB;
-                rowA = matrizDispersa.getDisperseRowVec(a - 1);
-                rowB = matrizDispersa.getDisperseRowVec(b - 1);
-
-                for (int i = 0; i < rowB.size(); i++)
+                if (a != b)
                 {
-                    matrizDispersa.assign(a - 1, i, rowB[i].first);
-                }
+                    vector<pair<int, int>> rowA, rowB;
+                    rowA = matrizDispersa.getDisperseRowVec(a - 1);
+                    rowB = matrizDispersa.getDisperseRowVec(b - 1);
 
-                for (int i = 0; i < rowA.size(); i++)
-                {
-                    matrizDispersa.assign(b - 1, i, rowA[i].first);
+                    for (int i = 0; i < rowB.size(); i++)
+                    {
+                        matrizDispersa.assign(a - 1, i, rowB[i].first);
+                    }
+
+                    for (int i = 0; i < rowA.size(); i++)
+                    {
+                        matrizDispersa.assign(b - 1, i, rowA[i].first);
+                    }
                 }
             }
             else if (tr == "col")
             {
                 int a, b;
                 cin >> a >> b;
-                vector<pair<int, int>> colA, colB;
-                colA = matrizDispersa.getDisperseColVec(a - 1);
-                colB = matrizDispersa.getDisperseColVec(b - 1);
-
-                for (int i = 0; i < colB.size(); i++)
+                if (a != b)
                 {
-                    matrizDispersa.assign(i, a - 1, colB[i].first);
-                }
 
-                for (int i = 0; i < colA.size(); i++)
-                {
-                    matrizDispersa.assign(i, b - 1, colA[i].first);
+                    vector<pair<int, int>> colA, colB;
+                    colA = matrizDispersa.getDisperseColVec(a - 1);
+                    colB = matrizDispersa.getDisperseColVec(b - 1);
+
+                    for (int i = 0; i < colB.size(); i++)
+                    {
+                        matrizDispersa.assign(i, a - 1, colB[i].first);
+                    }
+
+                    for (int i = 0; i < colA.size(); i++)
+                    {
+                        matrizDispersa.assign(i, b - 1, colA[i].first);
+                    }
                 }
             }
             else if (tr == "inc")
