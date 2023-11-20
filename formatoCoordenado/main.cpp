@@ -152,8 +152,8 @@ int main()
         l.push_back(d6);
         l.push_back(d7);
 
-        // d6 = DisperseMatrix::addMatrixList(l);
-        // d6.printMatrix("-.-");
+        d6 = DisperseMatrix::addMatrixList(l);
+        d6.printMatrix("-.-");
 
         printf("Max: %d\n", d6.getMax());
 

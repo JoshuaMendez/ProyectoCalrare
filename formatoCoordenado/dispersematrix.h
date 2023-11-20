@@ -21,13 +21,13 @@ using namespace std;
 
 class DisperseMatrix
 {
-public:
+private:
     vector<int> valores;
     vector<int> filas;
     vector<int> columnas;
     int nFilas, nColumnas;
 
-    // public:
+public:
     /************************
      * OPERACIONES DEL TAD *
      ************************/
@@ -57,8 +57,7 @@ public:
     void printMatrix(string);                             // Imprime la matriz con el separador
     int getMax();                                         // Retorna el mayor elemento de la matriz
     DisperseMatrix getTranspose();                        // Transpone la matriz
-    DisperseMatrix addMatrixList(list<DisperseMatrix> &); // Suma todas las matrices dispersas de una lista
-
+    static DisperseMatrix addMatrixList(list<DisperseMatrix> &); // Suma todas las matrices dispersas de una lista
     /* Sobrecarga operadores */
     DisperseMatrix operator+(DisperseMatrix &); // Suma entre 2 matrices
     DisperseMatrix operator*(DisperseMatrix &); // Multiplicación entre 2 matrices
