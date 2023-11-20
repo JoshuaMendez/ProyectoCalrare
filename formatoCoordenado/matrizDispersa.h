@@ -33,7 +33,7 @@ public:
     /* Constructoras */
     DisperseMatrix();                            // Vacío
     DisperseMatrix(int **&, int, int);           // Arreglo de 2 dimensiones
-    DisperseMatrix(const vector<vector<int>> &); // Vector de Vectores
+    DisperseMatrix( vector<vector<int>> &); // Vector de Vectores
     DisperseMatrix(const DisperseMatrix &);      // Recibe una matriz dispersa
 
     /* Modificadoras */

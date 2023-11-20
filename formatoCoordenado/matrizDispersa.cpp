@@ -37,7 +37,7 @@ DisperseMatrix::DisperseMatrix(int **&matriz, int fil, int col) // Recibe un arr
 }
 // Siendo n = el numero de filas y m = el numero de columnas
 // Siendo lo mas costoso n*m. Complejidad O(n*m)
-DisperseMatrix::DisperseMatrix(const vector<vector<int>> &matriz) // Recibe un vector de vectores y lo vuelve una matriz dispersa
+DisperseMatrix::DisperseMatrix( vector<vector<int>> &matriz) // Recibe un vector de vectores y lo vuelve una matriz dispersa
 {
     valores;
     filas;
@@ -93,9 +93,16 @@ void DisperseMatrix::assign(int i, int j, int v) // Ingresa un valor en la posic
     while (flag && cont < valores.size()) // Se verifica que la posición no exista.
     {
         if (filas[cont] == i && columnas[cont] == j)
-        {
-            valores[cont] = v;
+        {   if(v != 0){
+                valores[cont] = v;
+             }else{
+                valores.erase(valores.begin() + cont);
+                filas.erase(filas.begin() + cont);
+                columnas.erase(columnas.begin() + cont);
+             }
+           
             flag = false;
+
         }
         cont++;
     }
