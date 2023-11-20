@@ -1,8 +1,4 @@
-#include <cstdio>
-#include <vector>
-#include <list>
-#include <deque>
-#include "matrizDispersa.h"
+#include "dispersematrix.h"
 
 int main()
 {

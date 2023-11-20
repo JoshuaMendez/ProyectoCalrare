@@ -10,6 +10,8 @@
 #include <list>
 #include <vector>
 #include <string>
+#include <cstdio>
+#include <deque>
 
 using namespace std;
 

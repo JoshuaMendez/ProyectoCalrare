@@ -3,7 +3,7 @@
  * Archivo CPP libreria TAD matriz Dispersa
  * Representación Estructuras Matriz Dispersa de la forma de coordenadas con vectores
  */
-#include "matrizDispersa.h"
+#include "dispersematrix.h"
 
 using namespace std;
 
