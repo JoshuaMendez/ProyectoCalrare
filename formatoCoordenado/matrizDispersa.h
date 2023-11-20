@@ -31,10 +31,10 @@ public:
      ************************/
 
     /* Constructoras */
-    DisperseMatrix();                            // Vacío
-    DisperseMatrix(int **&, int, int);           // Arreglo de 2 dimensiones
-    DisperseMatrix( vector<vector<int>> &); // Vector de Vectores
-    DisperseMatrix(const DisperseMatrix &);      // Recibe una matriz dispersa
+    DisperseMatrix();                       // Vacío
+    DisperseMatrix(int **&, int, int);      // Arreglo de 2 dimensiones
+    DisperseMatrix(vector<vector<int>> &);  // Vector de Vectores
+    DisperseMatrix(const DisperseMatrix &); // Recibe una matriz dispersa
 
     /* Modificadoras */
     vector<vector<int>> rebuild();     // Reconstruir la matriz dispersa a normal con ceros y la retonar
